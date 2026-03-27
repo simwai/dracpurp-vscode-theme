@@ -2,7 +2,7 @@
 
 # Dracpurp: The Dark Purple Evolution
 
-*By Otávio Miranda, evolving into the cyberpunk future.*
+*By simwai, evolving into the cyberpunk future.*
 
 ## The Emergence of Dracpurp
 
@@ -41,11 +41,5 @@ We’re constantly refining the aesthetic landscape of Dracpurp. If you find a c
 
 ---
 
-*“The goal is not to see the code, but to inhabit it.”*
-
-*— Benjamin Goertzel (inspired style)*
-
----
-
 **License:** MIT
-**Maintainer:** Otávio Miranda
+**Maintainer:** simwai
