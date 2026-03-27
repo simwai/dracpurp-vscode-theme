@@ -1,0 +1,32 @@
+<svg width="256" height="256" viewBox="0 0 256 256" xmlns="http://www.w3.org/2000/svg">
+  <defs>
+    <linearGradient id="purpleGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:#b83dff;stop-opacity:1" />
+      <stop offset="100%" style="stop-color:#a025e7;stop-opacity:1" />
+    </linearGradient>
+    <filter id="neonGlow">
+      <feGaussianBlur stdDeviation="6" result="blur"/>
+      <feComposite in="SourceGraphic" in2="blur" operator="over"/>
+    </filter>
+    <clipPath id="circleClip">
+      <circle cx="128" cy="128" r="120" />
+    </clipPath>
+  </defs>
+
+  <!-- Hexagon background -->
+  <path d="M128 20 L220 73 L220 183 L128 236 L36 183 L36 73 Z" fill="#100e12" stroke="#a025e7" stroke-width="8" filter="url(#neonGlow)" />
+
+  <!-- Stylized D for Dracpurp -->
+  <path d="M80 60 L80 196 C80 196 176 196 176 128 C176 60 80 60 80 60 Z" fill="none" stroke="url(#purpleGrad)" stroke-width="16" stroke-linecap="round" stroke-linejoin="round" filter="url(#neonGlow)" />
+
+  <!-- Inner detail -->
+  <path d="M100 85 L100 171 C100 171 145 171 145 128 C145 85 100 85 100 85 Z" fill="#b83dff" opacity="0.3" />
+
+  <!-- Cyberpunk circuit lines -->
+  <g stroke="#a025e7" stroke-width="2" opacity="0.6">
+    <path d="M128 20 L128 40" />
+    <path d="M128 236 L128 216" />
+    <path d="M220 128 L200 128" />
+    <path d="M36 128 L56 128" />
+  </g>
+</svg>
