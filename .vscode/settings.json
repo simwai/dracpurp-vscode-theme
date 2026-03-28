@@ -16,4 +16,12 @@
         "!Sub",
         "!alpha sequence"
     ],
+    "editor.tabSize": 2,
+    "editor.formatOnSave": true,
+    "editor.defaultFormatter": "esbenp.prettier-vscode",
+    "files.insertFinalNewline": true,
+    "prettier.semi": false,
+    "prettier.tabWidth": 2,
+    "prettier.singleQuote": true,
+    "prettier.trailingComma": "none"
 }

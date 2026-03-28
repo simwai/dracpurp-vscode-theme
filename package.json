@@ -1,68 +1,83 @@
 {
-	"name": "dracpurp",
-	"version": "1.0.0",
-	"displayName": "Dracpurp",
-	"description": "A polished purple and dark cyberpunk evolution of the Dracula theme.",
-	"publisher": "dracpurp",
-	"license": "MIT",
-	"scripts": {
-		"build": "node ./scripts/build.js",
-		"lint": "node ./scripts/lint.js",
-		"package": "vsce package -o ./bin/dracpurp.vsix",
-		"vscode:prepublish": "npm run build",
-		"vsce-publish": "vsce publish",
-		"updateTheme": "npm run vscode:prepublish && npm run package"
-	},
-	"repository": {
-		"type": "git",
-		"url": "https://github.com/luizomf/omtheme"
-	},
-	"engines": {
-		"vscode": "^1.13.0"
-	},
-	"categories": [
-		"Themes"
-	],
-	"keywords": [
-		"dracpurp",
-		"purple",
-		"dark",
-		"cyberpunk",
-		"dracula",
-		"theme",
-		"color-theme"
-	],
-	"icon": "icon.png",
-	"galleryBanner": {
-		"color": "#100e12",
-		"theme": "dark"
-	},
-	"contributes": {
-		"themes": [
-			{
-				"label": "Dracpurp",
-				"uiTheme": "vs-dark",
-				"path": "./theme/dracpurp.json"
-			},
-			{
-				"label": "Dracpurp (Night Owl Italic)",
-				"uiTheme": "vs-dark",
-				"path": "./theme/dracpurp-nightOwlItalic.json"
-			},
-			{
-				"label": "Dracpurp (No Italic)",
-				"uiTheme": "vs-dark",
-				"path": "./theme/dracpurp-noItalic.json"
-			}
-		]
-	},
-	"devDependencies": {
-		"js-yaml": "^3.14.0",
-		"prettier": "^2.2.1",
-		"tinycolor2": "^1.4.2",
-		"vsce": "^1.87.1"
-	},
-	"dependencies": {
-		"lodash": "^4.17.21"
-	}
+  "name": "dracpurp",
+  "version": "0.0.0-development",
+  "displayName": "Dracpurp",
+  "description": "A polished purple and dark cyberpunk evolution of the Dracula theme.",
+  "publisher": "simwai",
+  "license": "MIT",
+  "scripts": {
+    "build": "node ./scripts/build.js",
+    "lint": "node ./scripts/lint.js",
+    "package": "vsce package -o ./bin/dracpurp.vsix",
+    "vscode:prepublish": "npm run build",
+    "vsce-publish": "vsce publish",
+    "updateTheme": "npm run vscode:prepublish && npm run package",
+    "prepare": "husky"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/simwai/dracpurp"
+  },
+  "engines": {
+    "vscode": "^1.13.0"
+  },
+  "categories": [
+    "Themes"
+  ],
+  "keywords": [
+    "dracpurp",
+    "purple",
+    "dark",
+    "cyberpunk",
+    "dracula",
+    "theme",
+    "color-theme"
+  ],
+  "icon": "icon.svg",
+  "galleryBanner": {
+    "color": "#100e12",
+    "theme": "dark"
+  },
+  "contributes": {
+    "themes": [
+      {
+        "label": "Dracpurp",
+        "uiTheme": "vs-dark",
+        "path": "./theme/dracpurp.json"
+      },
+      {
+        "label": "Dracpurp (Night Owl Italic)",
+        "uiTheme": "vs-dark",
+        "path": "./theme/dracpurp-nightOwlItalic.json"
+      },
+      {
+        "label": "Dracpurp (No Italic)",
+        "uiTheme": "vs-dark",
+        "path": "./theme/dracpurp-noItalic.json"
+      }
+    ]
+  },
+  "lint-staged": {
+    "*.{js,json,yml,md}": [
+      "prettier --write"
+    ]
+  },
+  "devDependencies": {
+    "@semantic-release/changelog": "^6.0.3",
+    "@semantic-release/commit-analyzer": "^11.1.0",
+    "@semantic-release/git": "^10.0.1",
+    "@semantic-release/github": "^9.2.6",
+    "@semantic-release/npm": "^11.0.2",
+    "@semantic-release/release-notes-generator": "^12.1.0",
+    "husky": "^9.0.11",
+    "js-yaml": "^3.14.0",
+    "lint-staged": "^15.2.2",
+    "prettier": "^2.2.1",
+    "semantic-release": "^23.0.2",
+    "tinycolor2": "^1.4.2",
+    "vsce": "^1.87.1"
+  },
+  "dependencies": {
+    "lodash": "^4.17.21"
+  }
 }

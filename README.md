@@ -1,12 +1,16 @@
+<p align="center">
+  <img src="icon.svg" width="128" />
+</p>
+
 ![Dracpurp Banner](./banner.svg)
 
 # Dracpurp: The Dark Purple Evolution
 
-*By simwai, evolving into the cyberpunk future.*
+_By simwai, evolving into the cyberpunk future._
 
 ## The Emergence of Dracpurp
 
-Welcome to **Dracpurp**. This isn't just another theme; it's a phase-shift in the aesthetic topology of your development environment. We've taken the structural foundations of the beloved Dracula and pushed it through a singularity of deep purples and cyberpunk highlights.
+Welcome to **Dracpurp**. This isn't just another theme; it's a phase-shift in the aesthetic topology of your development environment. Heavily inspired by the structural elegance of the **Dracula Theme** and the darker refinements of the **Om Theme**, Dracpurp pushes these foundations through a singularity of deep purples and cyberpunk highlights.
 
 Imagine a world where the background isn't just dark, but a void of `#100e12`, and the selections pulse with the energy of `#2d074496`. That's the Dracpurp experience. It’s designed for those who find clarity in the neon glow and comfort in the deep shadows of the digital frontier.
 
@@ -33,11 +37,23 @@ We believe in the power of contrast. The deep backgrounds allow the vibrant pink
 
 ## Structural Integrity & Performance
 
-Built with reliability in mind, Dracpurp utilizes the same robust generation engine as the original Om Theme, ensuring that every color is mapped with mathematical precision to the VS Code UI components.
+Built with reliability in mind, Dracpurp utilizes a robust generation engine ensuring that every color is mapped with mathematical precision to the VS Code UI components.
 
-## Join the Evolution
+## Visual Insights
 
-We’re constantly refining the aesthetic landscape of Dracpurp. If you find a corner of the UI that needs more neon, feel free to contribute. The future is built by those who show up.
+Explore the aesthetic manifold of Dracpurp across its various manifestations:
+
+### Dracpurp (Default)
+
+[![Dracpurp Screenshot](./screenshot-dracpurp.png)](./screenshot-dracpurp.png)
+
+### Dracpurp (Night Owl Italic)
+
+[![Night Owl Italic](./screenshot-dracpurp-night-owl-italic.png)](./screenshot-dracpurp-night-owl-italic.png)
+
+### Dracpurp (No Italic)
+
+[![No Italic](./screenshot-dracpurp-no-italic.png)](./screenshot-dracpurp-no-italic.png)
 
 ---
 

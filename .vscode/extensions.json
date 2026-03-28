@@ -1,0 +1,8 @@
+{
+  "recommendations": [
+    "esbenp.prettier-vscode",
+    "editorconfig.editorconfig",
+    "redhat.vscode-yaml",
+    "ms-ceintl.vscode-language-pack-pt-br"
+  ]
+}
