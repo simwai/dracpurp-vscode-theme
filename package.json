@@ -10,7 +10,7 @@
     "lint": "node ./scripts/lint.js",
     "format": "biome check --write .",
     "prepare": "husky",
-    "release": "pnpm run build && semantic-release --no-ci"
+    "release": "dotenv -e ./.env -- pnpm run build && semantic-release --no-ci"
   },
   "repository": {
     "type": "git",
@@ -78,7 +78,8 @@
     "lint-staged": "^15.2.2",
     "lodash": "^4.17.21",
     "semantic-release": "^23.0.2",
-    "tinycolor2": "^1.4.2"
+    "tinycolor2": "^1.4.2",
+    "dotenv-cli": "latest"
   },
   "dependencies": {
     "semantic-release-vsce": "^6.1.2"
