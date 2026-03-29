@@ -10,10 +10,11 @@
     "lint": "node ./scripts/lint.js",
     "format": "biome check --write",
     "package": "vsce package -o ./bin/dracpurp.vsix",
-    "vscode:prepublish": "npm run build",
+    "vscode:prepublish": "pnpm run build",
     "vsce-publish": "vsce publish",
-    "updateTheme": "npm run vscode:prepublish && npm run package",
-    "prepare": "husky"
+    "updateTheme": "pnpm run vscode:prepublish && pnpm run package",
+    "prepare": "husky",
+    "release": "pnpm run build && semantic-release --no-ci"
   },
   "repository": {
     "type": "git",
@@ -61,11 +62,14 @@
   },
   "lint-staged": {
     "*.{js,json,yml,md}": [
-      "pnpm run format"
+      "pnpm run format",
+      "pnpm run lint"
     ]
   },
   "devDependencies": {
     "@biomejs/biome": "2.3.11",
+    "@commitlint/cli": "^20.5.0",
+    "@commitlint/config-conventional": "^20.5.0",
     "@semantic-release/changelog": "^6.0.3",
     "@semantic-release/commit-analyzer": "^11.1.0",
     "@semantic-release/git": "^10.0.1",
