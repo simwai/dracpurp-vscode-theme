@@ -7,10 +7,6 @@ settings:
 importers:
 
   .:
-    dependencies:
-      '@vscode/vsce':
-        specifier: ^3.7.1
-        version: 3.7.1
     devDependencies:
       '@biomejs/biome':
         specifier: 2.3.11
@@ -39,6 +35,9 @@ importers:
       '@semantic-release/release-notes-generator':
         specifier: ^12.1.0
         version: 12.1.0(semantic-release@23.1.1(typescript@6.0.2))
+      '@vscode/vsce':
+        specifier: ^3.7.1
+        version: 3.7.1
       husky:
         specifier: ^9.0.11
         version: 9.1.7
