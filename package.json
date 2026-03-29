@@ -9,9 +9,9 @@
     "build": "node ./scripts/build.js",
     "lint": "node ./scripts/lint.js",
     "format": "biome check --write",
-    "package": "vsce package -o ./bin/dracpurp.vsix",
+    "package": "vsce package -o ./bin/dracpurp.vsix --no-dependencies",
     "vscode:prepublish": "pnpm run build",
-    "vsce-publish": "vsce publish",
+    "vsce-publish": "vsce publish --no-dependencies",
     "updateTheme": "pnpm run vscode:prepublish && pnpm run package",
     "prepare": "husky",
     "release": "pnpm run build && semantic-release --no-ci"
