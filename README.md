@@ -1,7 +1,3 @@
-<p align="center">
-  <img src="icon.svg" width="128" />
-</p>
-
 ![Dracpurp Banner](./banner.svg)
 
 # Dracpurp: The Dark Purple Evolution
