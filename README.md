@@ -1,4 +1,4 @@
-![Dracpurp Banner](./banner.svg)
+![Dracpurp Banner](./banner.png)
 
 # Dracpurp: The Dark Purple Evolution
 
