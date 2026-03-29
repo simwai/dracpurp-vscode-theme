@@ -1,27 +1,27 @@
 {
-    "files.trimTrailingWhitespace": true,
-    "[yaml]": {
-        "editor.renderWhitespace": "boundary"
-    },
-    "yaml.customTags": [
-        "!Equals sequence",
-        "!FindInMap sequence",
-        "!GetAtt",
-        "!GetAZs",
-        "!ImportValue",
-        "!Join sequence",
-        "!Ref",
-        "!Select sequence",
-        "!Split sequence",
-        "!Sub",
-        "!alpha sequence"
-    ],
-    "editor.tabSize": 2,
-    "editor.formatOnSave": true,
-    "editor.defaultFormatter": "vscode.typescript-language-features",
-    "files.insertFinalNewline": true,
-    "prettier.semi": false,
-    "prettier.tabWidth": 2,
-    "prettier.singleQuote": true,
-    "prettier.trailingComma": "none"
+  "files.trimTrailingWhitespace": true,
+  "[yaml]": {
+    "editor.renderWhitespace": "boundary"
+  },
+  "yaml.customTags": [
+    "!Equals sequence",
+    "!FindInMap sequence",
+    "!GetAtt",
+    "!GetAZs",
+    "!ImportValue",
+    "!Join sequence",
+    "!Ref",
+    "!Select sequence",
+    "!Split sequence",
+    "!Sub",
+    "!alpha sequence"
+  ],
+  "editor.tabSize": 2,
+  "editor.formatOnSave": true,
+  "editor.defaultFormatter": "vscode.typescript-language-features",
+  "files.insertFinalNewline": true,
+  "prettier.semi": false,
+  "prettier.tabWidth": 2,
+  "prettier.singleQuote": true,
+  "prettier.trailingComma": "none"
 }

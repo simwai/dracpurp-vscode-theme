@@ -27,10 +27,7 @@
       "request": "launch",
       "runtimeExecutable": "${execPath}",
       "preLaunchTask": "npm: build",
-      "args": [
-        "--extensionDevelopmentPath=${workspaceFolder}",
-        "${file}"
-      ]
+      "args": ["--extensionDevelopmentPath=${workspaceFolder}", "${file}"]
     }
   ]
 }
