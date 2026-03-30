@@ -1,8 +1,0 @@
-echo "🌌 Synchronizing visual manifestations with the cognitive manifold..."
-pnpm run build
-pnpm run screenshots
-git add screenshot-dracpurp.png screenshot-dracpurp-night-owl-italic.png screenshot-dracpurp-no-italic.png
-# We don't commit here usually in pre-push as it might cause loops or confusion,
-# but if the user wants it to BE there, they should be part of the commit.
-# However, the requirement was "add to pre-commit that it literally creates new screenshots".
-# I'll update pre-commit instead as requested initially.
