@@ -4,40 +4,40 @@ author: simwai
 maintainers:
   - simwai <simwai@example.com>
 semanticClass: theme.dracpurp
-semanticHighlighting: true
+semanticHighlighting: false
 dracula:
   base:
     - &BG '#100e12'
     - &FG '#e8e8e8'
     - &SELECTION '#2d074496'
     - &COMMENT '#8b6b9e'
-    - &CYAN '#8BE9FD'
-    - &GREEN '#50FA7B'
-    - &ORANGE '#ffb347'
+    - &CYAN '#6CB5C4'
+    - &GREEN '#3EC25F'
+    - &ORANGE '#DE9C3E'
     - &PINK '#FF79C6'
-    - &PURPLE '#BD93F9'
-    - &RED '#ff6b6b'
-    - &YELLOW '#F1FA8C'
+    - &PURPLE '#C095FC'
+    - &RED '#FF8585'
+    - &YELLOW '#AAB063'
   ansi:
     - &COLOR0 '#11021a'
-    - &COLOR1 '#ff6b6b'
-    - &COLOR2 '#50FA7B'
-    - &COLOR3 '#ffb347'
-    - &COLOR4 '#BD93F9'
+    - &COLOR1 '#FF8585'
+    - &COLOR2 '#3EC25F'
+    - &COLOR3 '#DE9C3E'
+    - &COLOR4 '#C095FC'
     - &COLOR5 '#FF79C6'
-    - &COLOR6 '#8BE9FD'
+    - &COLOR6 '#6CB5C4'
     - &COLOR7 '#e8e8e8'
     - &COLOR8 '#8b6b9e'
-    - &COLOR9 '#ff6b6b'
-    - &COLOR10 '#50FA7B'
-    - &COLOR11 '#ffb347'
+    - &COLOR9 '#FF8585'
+    - &COLOR10 '#3EC25F'
+    - &COLOR11 '#DE9C3E'
     - &COLOR12 '#FF79C6'
     - &COLOR13 '#FF79C6'
-    - &COLOR14 '#8BE9FD'
+    - &COLOR14 '#6CB5C4'
     - &COLOR15 '#ffffff'
   brightOther:
-    - &TEMP_QUOTES '#F1FA8C'
-    - &TEMP_PROPERTY_QUOTES '#8BE9FE'
+    - &TEMP_QUOTES '#AAB063'
+    - &TEMP_PROPERTY_QUOTES '#6CB5C4'
   other:
     - &LineHighlight '#2d074480'
     - &NonText '#35094e40'
@@ -47,7 +47,6 @@ dracula:
     - &BGLight '#11021a'
     - &BGDark '#100e12'
     - &BGDarker '#0e0217'
-
 colors:
   editor.background: '#100e12'
   editor.selectionBackground: '#2d074496'
