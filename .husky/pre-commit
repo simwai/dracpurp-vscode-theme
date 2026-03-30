@@ -1,1 +1,14 @@
+#!/bin/sh
+. "$(dirname "$0")/_/husky.sh"
+
+# Ensure we have the latest builds
+pnpm run build
+
+# Check if theme source has changed
+if git diff --cached --name-only | grep -E '^src/.*\.yml$'; then
+    echo "✨ Theme transformation detected. Re-projecting visual manifolds..."
+    pnpm run screenshots
+    git add screenshot-dracpurp.png screenshot-dracpurp-night-owl-italic.png screenshot-dracpurp-no-italic.png
+fi
+
 npx lint-staged
