@@ -1,6 +1,6 @@
 {
   "name": "dracpurp",
-  "version": "0.1.0",
+  "version": "1.0.0",
   "displayName": "Dracpurp",
   "description": "A polished purple and dark cyberpunk evolution of the Dracula theme.",
   "publisher": "simwai",
@@ -10,7 +10,7 @@
     "lint": "node ./scripts/lint.js",
     "format": "biome check --write .",
     "prepare": "husky",
-    "release": "dotenv -e ./.env -- pnpm run build && semantic-release --no-ci"
+    "release": "node --env-file=.env ./node_modules/semantic-release/bin/semantic-release.js --no-ci"
   },
   "repository": {
     "type": "git",
@@ -79,9 +79,7 @@
     "lodash": "^4.17.21",
     "semantic-release": "^23.0.2",
     "tinycolor2": "^1.4.2",
-    "dotenv-cli": "latest"
-  },
-  "dependencies": {
     "semantic-release-vsce": "^6.1.2"
-  }
+  },
+  "dependencies": {}
 }
