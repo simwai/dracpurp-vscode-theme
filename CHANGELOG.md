@@ -1,3 +1,11 @@
+# [1.1.0](https://github.com/simwai/dracpurp/compare/v1.0.0...v1.1.0) (2026-03-30)
+
+
+### Features
+
+* implement automated theme screenshots and README overhaul ([73f54ac](https://github.com/simwai/dracpurp/commit/73f54ac1e135410573271a405a86ef18ec02fb14))
+* refine theme screenshots with JS sample and improved rendering ([bcf2945](https://github.com/simwai/dracpurp/commit/bcf29454b24baca59c59477ee54fd238fcc0e481))
+
 # 1.0.0 (2026-03-30)
 
 
