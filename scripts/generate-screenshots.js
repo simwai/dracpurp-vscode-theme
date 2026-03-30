@@ -1,0 +1,95 @@
+const { chromium } = require('playwright');
+const fs = require('node:fs');
+const path = require('node:path');
+
+const THEMES = [
+  { name: 'dracpurp', file: 'theme/dracpurp.json', output: 'screenshot-dracpurp.png' },
+  { name: 'dracpurp-nightOwlItalic', file: 'theme/dracpurp-nightOwlItalic.json', output: 'screenshot-dracpurp-night-owl-italic.png' },
+  { name: 'dracpurp-noItalic', file: 'theme/dracpurp-noItalic.json', output: 'screenshot-dracpurp-no-italic.png' }
+];
+
+const SAMPLE_CODE_PATH = path.join(__dirname, '..', 'samples', 'battle-strategy.js');
+const sampleCode = fs.readFileSync(SAMPLE_CODE_PATH, 'utf-8');
+
+async function generateScreenshots() {
+  const browser = await chromium.launch();
+  const context = await browser.newContext({
+    viewport: { width: 1400, height: 1000 }
+  });
+  const page = await context.newPage();
+
+  for (const themeInfo of THEMES) {
+    console.log(`Generating screenshot for ${themeInfo.name}...`);
+    const themePath = path.join(__dirname, '..', themeInfo.file);
+    const themeData = JSON.parse(fs.readFileSync(themePath, 'utf-8'));
+
+    // Using a more stable playground that provides direct access to monaco
+    await page.goto('https://microsoft.github.io/monaco-editor/playground.html');
+
+    // Wait for monaco to be ready
+    await page.waitForFunction(() => typeof window.monaco !== 'undefined');
+
+    await page.evaluate(async ({ code, themeData }) => {
+        const monaco = window.monaco;
+
+        // Define the theme for Monaco
+        // Tokens need careful mapping from VS Code to Monaco's simplified system
+        const rules = (themeData.tokenColors || []).flatMap(tc => {
+            const scopes = Array.isArray(tc.scope) ? tc.scope : (tc.scope ? [tc.scope] : []);
+            return scopes.map(s => ({
+                token: s,
+                foreground: tc.settings.foreground,
+                fontStyle: tc.settings.fontStyle
+            }));
+        });
+
+        monaco.editor.defineTheme('dracpurp-dynamic', {
+            base: 'vs-dark',
+            inherit: true,
+            rules: rules,
+            colors: themeData.colors || {}
+        });
+
+        monaco.editor.setTheme('dracpurp-dynamic');
+
+        // Update all models
+        monaco.editor.getModels().forEach(model => {
+            model.setValue(code);
+            monaco.editor.setModelLanguage(model, 'javascript');
+        });
+
+        // Hide all surrounding elements to ensure only the editor is visible
+        const style = document.createElement('style');
+        style.textContent = `
+            header, footer, .sidebar, .navbar, .playground-header, .controls, .nav {
+                display: none !important;
+            }
+            .editor-container, #container, .monaco-editor-background {
+                position: fixed !important;
+                top: 0 !important;
+                left: 0 !important;
+                width: 100vw !important;
+                height: 100vh !important;
+                z-index: 9999 !important;
+            }
+        `;
+        document.head.appendChild(style);
+
+        window.dispatchEvent(new Event('resize'));
+    }, { code: sampleCode, themeData });
+
+    // Wait for the theme to apply and the syntax to be colorized
+    await page.waitForTimeout(3000);
+
+    const screenshotPath = path.join(__dirname, '..', themeInfo.output);
+    await page.screenshot({ path: screenshotPath, fullPage: true });
+    console.log(`Saved: ${screenshotPath}`);
+  }
+
+  await browser.close();
+}
+
+generateScreenshots().catch(err => {
+  console.error('Error generating screenshots:', err);
+  process.exit(1);
+});
