@@ -40,6 +40,19 @@ A tribute to the ancestral roots.
 - [Eggshell](./screenshot-dracpurp-draculaEggshell.png)
 - [High Contrast Eggshell](./screenshot-dracpurp-draculaHCEggshell.png)
 
+## Multi-Language Manifestations
+
+Dracpurp's cognitive interface adapts seamlessly to various logical structures:
+
+### Java (Sword Art Online Edition)
+[![Java](./screenshot-lang-java.png)](./screenshot-lang-java.png)
+
+### C# (Cyberpunk Edgerunners Edition)
+[![C#](./screenshot-lang-csharp.png)](./screenshot-lang-csharp.png)
+
+### TypeScript (The Great Kanto Singularity)
+[![TypeScript](./screenshot-lang-typescript.png)](./screenshot-lang-typescript.png)
+
 ## Installation: Seamless Integration
 
 Getting Dracpurp into your VS Code is simpler than a recursive call with a base case:
