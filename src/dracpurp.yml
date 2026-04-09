@@ -1043,7 +1043,7 @@ tokenColors:
       - variable.other.constant.ts # Fixes incorrect highlighting of pseudo-constants in ts
       - variable.other.constant.tsx # Fixes incorrect highlighting of pseudo-constants in tsx
     settings:
-      foreground: *FG
+      foreground: *ORANGE
 
   - name: Destructuring / aliasing reference name (LHS)
     scope:
@@ -1061,7 +1061,7 @@ tokenColors:
       - meta.variable.assignment.destructured.object.coffee variable variable # Object destructuring variable (coffeescript)
     settings:
       fontStyle: ''
-      foreground: *FG
+      foreground: *ORANGE
 
   # =============================================================================
   # Language Extensions / Edge Cases
@@ -1079,7 +1079,7 @@ tokenColors:
     scope:
       - meta.selectionset.graphql meta.arguments variable
     settings:
-      foreground: *FG
+      foreground: *ORANGE
 
   - name: GraphQL fragment name (definition)
     scope:

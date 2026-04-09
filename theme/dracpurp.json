@@ -1210,7 +1210,7 @@
                 "variable.other.constant.tsx"
             ],
             "settings": {
-                "foreground": "#e8e8e8"
+                "foreground": "#DE9C3E"
             }
         },
         {
@@ -1234,7 +1234,7 @@
             ],
             "settings": {
                 "fontStyle": "",
-                "foreground": "#e8e8e8"
+                "foreground": "#DE9C3E"
             }
         },
         {
@@ -1252,7 +1252,7 @@
                 "meta.selectionset.graphql meta.arguments variable"
             ],
             "settings": {
-                "foreground": "#e8e8e8"
+                "foreground": "#DE9C3E"
             }
         },
         {

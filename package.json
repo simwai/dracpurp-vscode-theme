@@ -56,6 +56,11 @@
         "label": "Dracpurp (No Italic)",
         "uiTheme": "vs-dark",
         "path": "./theme/dracpurp-noItalic.json"
+      },
+      {
+        "label": "Dracpurp High Contrast",
+        "uiTheme": "vs-dark",
+        "path": "./theme/dracpurp-highContrast.json"
       }
     ]
   },

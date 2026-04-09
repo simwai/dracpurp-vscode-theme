@@ -9,7 +9,7 @@ if (!fs.existsSync(THEME_DIR)) {
 }
 
 module.exports = async () => {
-  const { base, nightOwlItalic, noItalic } = await generate()
+  const { base, nightOwlItalic, noItalic, highContrast } = await generate()
 
   return Promise.all([
     fs.promises.writeFile(path.join(THEME_DIR, 'dracpurp.json'), JSON.stringify(base, null, 4)),
@@ -20,6 +20,10 @@ module.exports = async () => {
     fs.promises.writeFile(
       path.join(THEME_DIR, 'dracpurp-nightOwlItalic.json'),
       JSON.stringify(nightOwlItalic, null, 4),
+    ),
+    fs.promises.writeFile(
+      path.join(THEME_DIR, 'dracpurp-highContrast.json'),
+      JSON.stringify(highContrast, null, 4),
     ),
   ])
 }

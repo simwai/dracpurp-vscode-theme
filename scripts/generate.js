@@ -27,6 +27,7 @@ module.exports = async () => {
   const baseClone1 = _.cloneDeep(base)
   const baseClone2 = _.cloneDeep(base)
   const baseClone3 = _.cloneDeep(base)
+  const baseClone4 = _.cloneDeep(base)
 
   const nightOwlItalic = baseClone3
   const noItalic = {
@@ -49,9 +50,22 @@ module.exports = async () => {
     }),
   }
 
+  const highContrast = {
+    ...baseClone4,
+    name: 'Dracpurp High Contrast',
+    colors: {
+      ...baseClone4.colors,
+      'editor.background': '#000000',
+    },
+    tokenColors: baseClone4.tokenColors.filter((obj) => {
+        return !obj?.name?.startsWith('OM_SETTING')
+      }),
+  }
+
   return {
     base: newBase,
     nightOwlItalic: { ...nightOwlItalic, name: 'Dracpurp (Night Owl Italic)' },
     noItalic,
+    highContrast,
   }
 }
