@@ -13,6 +13,11 @@ Our flagship manifestation. A perfect equilibrium of deep shadow and neon highli
 
 [![Dracpurp Singularity](./screenshot-dracpurp.png)](./screenshot-dracpurp.png)
 
+### Dracpurp (High Contrast)
+For the digital void-walkers. Absolute zero background for maximum chromatic pop.
+
+[![High Contrast](./screenshot-dracpurp-high-contrast.png)](./screenshot-dracpurp-high-contrast.png)
+
 ### Dracpurp (The Night Owl Italic)
 For the midnight architects who find elegance in the semantic flow of italicized logic.
 
@@ -31,11 +36,12 @@ Imagine a world where the background isn't just dark, but an **Abyssal Substrate
 
 ## Variants: Choose Your Reality
 
-Dracpurp comes in three distinct flavors, because we know the mind functions best when the aesthetic matches its current internal state:
+Dracpurp comes in four distinct flavors, because we know the mind functions best when the aesthetic matches its current internal state:
 
 1.  **Dracpurp (The Singularity):** The core experience. Clean, sharp, and focused.
-2.  **Dracpurp (Night Owl Italic):** For the dreamers and the midnight architects. A subtle, elegant use of italics to guide your semantic flow.
-3.  **Dracpurp (No Italic):** Pure structural integrity. For those who prefer their code as rigid and unwavering as a blockchain ledger.
+2.  **Dracpurp (High Contrast):** A specialized manifestation with a pure black background (#000000) for maximum contrast and focus.
+3.  **Dracpurp (Night Owl Italic):** For the dreamers and the midnight architects. A subtle, elegant use of italics to guide your semantic flow.
+4.  **Dracpurp (No Italic):** Pure structural integrity. For those who prefer their code as rigid and unwavering as a blockchain ledger.
 
 ## Installation: Seamless Integration
 
