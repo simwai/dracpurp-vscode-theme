@@ -3,29 +3,22 @@ const fs = require('node:fs')
 const path = require('node:path')
 const { createHighlighter } = require('shiki')
 
-const THEMES = [
-  { name: 'Dracpurp', file: 'theme/dracpurp.json', output: 'screenshot-dracpurp.png' },
-  {
-    name: 'Dracpurp (Night Owl Italic)',
-    file: 'theme/dracpurp-nightOwlItalic.json',
-    output: 'screenshot-dracpurp-night-owl-italic.png',
-  },
-  {
-    name: 'Dracpurp (No Italic)',
-    file: 'theme/dracpurp-noItalic.json',
-    output: 'screenshot-dracpurp-no-italic.png',
-  },
-  {
-    name: 'Dracpurp High Contrast',
-    file: 'theme/dracpurp-highContrast.json',
-    output: 'screenshot-dracpurp-high-contrast.png',
-  },
-]
-
-const SAMPLE_CODE_PATH = path.join(__dirname, '..', 'samples', 'battle-strategy.ts')
-const sampleCode = fs.readFileSync(SAMPLE_CODE_PATH, 'utf-8')
-
 async function generateScreenshots() {
+  const THEME_DIR = path.join(__dirname, '..', 'theme')
+  const themeFiles = fs.readdirSync(THEME_DIR).filter(f => f.endsWith('.json'))
+
+  const THEMES = themeFiles.map(file => {
+      const themeData = JSON.parse(fs.readFileSync(path.join(THEME_DIR, file), 'utf-8'))
+      return {
+          name: themeData.name,
+          file: `theme/${file}`,
+          output: `screenshot-${file.replace('.json', '')}.png`
+      }
+  })
+
+  const SAMPLE_CODE_PATH = path.join(__dirname, '..', 'samples', 'battle-strategy.ts')
+  const sampleCode = fs.readFileSync(SAMPLE_CODE_PATH, 'utf-8')
+
   const browser = await chromium.launch()
   const context = await browser.newContext({
     viewport: { width: 1400, height: 1000 },
@@ -36,10 +29,6 @@ async function generateScreenshots() {
   for (const themeInfo of THEMES) {
     console.log(`Generating screenshot for ${themeInfo.name}...`)
     const themePath = path.join(__dirname, '..', themeInfo.file)
-    if (!fs.existsSync(themePath)) {
-      console.error(`Theme file not found: ${themePath}. Run build first.`)
-      continue
-    }
     const themeData = JSON.parse(fs.readFileSync(themePath, 'utf-8'))
 
     // Create highlighter with the custom theme
@@ -55,7 +44,7 @@ async function generateScreenshots() {
 
     const colors = themeData.colors || {}
 
-    // Mock VS Code UI Template with improved accuracy (Line Numbers, etc.)
+    // Mock VS Code UI Template
     const htmlContent = `
 <!DOCTYPE html>
 <html>
@@ -289,26 +278,22 @@ async function generateScreenshots() {
         <div class="control minimize"></div>
         <div class="control maximize"></div>
       </div>
-      <span>battle-strategy.ts — Dracpurp</span>
+      <span>battle-strategy.ts — ${themeData.name}</span>
     </div>
     <div class="main-content">
       <div class="activity-bar">
         <div class="activity-icon explorer active"></div>
-        <div class="activity-icon" style="mask-image: url('data:image/svg+xml,%3Csvg xmlns=\'http://www.w3.org/2000/svg\' viewBox=\'0 0 24 24\'%3E%3Cpath d=\'M15.5 14h-.79l-.28-.27A6.471 6.471 0 0 0 16 9.5 6.5 6.5 0 1 0 9.5 16c1.61 0 3.09-.59 4.23-1.57l.27.28v.79l5 4.99L20.49 19l-4.99-5zm-6 0C7.01 14 5 11.99 5 9.5S7.01 5 9.5 5 14 7.01 14 9.5 11.99 14 9.5 14z\'/%3E%3C/svg%3E')"></div>
-        <div class="activity-icon" style="mask-image: url('data:image/svg+xml,%3Csvg xmlns=\'http://www.w3.org/2000/svg\' viewBox=\'0 0 24 24\'%3E%3Cpath d=\'M18 16.08c-.76 0-1.44.3-1.96.77L8.91 12.7c.05-.23.09-.46.09-.7s-.04-.47-.09-.7l7.05-4.11c.54.5 1.25.81 2.04.81 1.66 0 3-1.34 3-3s-1.34-3-3-3-3 1.34-3 3c0 .24.04.47.09.7L8.04 9.81C7.5 9.31 6.79 9 6 9c-1.66 0-3 1.34-3 3s1.34 3 3 3c.79 0 1.5-.31 2.04-.81l7.12 4.16c-.05.21-.08.43-.08.65 0 1.61 1.31 2.92 2.92 2.92 1.61 0 2.92-1.31 2.92-2.92s-1.31-2.92-2.92-2.92z\'/%3E%3C/svg%3E')"></div>
       </div>
       <div class="side-bar">
         <div class="side-bar-header">Explorer</div>
         <div class="file-tree">
           <div class="file-item">samples</div>
           <div class="file-item active">battle-strategy.ts</div>
-          <div class="file-item">README.md</div>
         </div>
       </div>
       <div class="editor-area">
         <div class="tabs-container">
           <div class="tab active">battle-strategy.ts</div>
-          <div class="tab">README.md</div>
         </div>
         <div class="editor-content">
           <div class="line-numbers">
@@ -324,11 +309,8 @@ async function generateScreenshots() {
       <div class="status-left">
         <div class="status-item-blue">WS: Dracpurp</div>
         <span>Main*</span>
-        <span>0 \u24BE 0 \u26A0</span>
       </div>
       <div class="status-right">
-        <span>Spaces: 2</span>
-        <span>UTF-8</span>
         <span>TypeScript</span>
       </div>
     </div>
@@ -338,7 +320,6 @@ async function generateScreenshots() {
 `
 
     await page.setContent(htmlContent)
-    // Wait for any potential rendering
     await page.waitForTimeout(500)
 
     const screenshotPath = path.join(__dirname, '..', themeInfo.output)
@@ -347,7 +328,6 @@ async function generateScreenshots() {
   }
 
   await browser.close()
-  console.log('All screenshots generated successfully.')
 }
 
 generateScreenshots().catch((err) => {

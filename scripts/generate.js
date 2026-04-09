@@ -15,57 +15,92 @@ module.exports = async () => {
   const yamlFile = await readFile(join(__dirname, '..', 'src', 'dracpurp.yml'), 'utf-8')
 
   /** @type {Theme} */
-  const base = load(yamlFile, { schema })
+  const rawBase = load(yamlFile, { schema })
 
   // Remove nulls and other falsy values from colors
-  for (const key of Object.keys(base.colors)) {
-    if (!base.colors[key]) {
-      delete base.colors[key]
+  for (const key of Object.keys(rawBase.colors)) {
+    if (!rawBase.colors[key]) {
+      delete rawBase.colors[key]
     }
   }
 
-  const baseClone1 = _.cloneDeep(base)
-  const baseClone2 = _.cloneDeep(base)
-  const baseClone3 = _.cloneDeep(base)
-  const baseClone4 = _.cloneDeep(base)
-
-  const nightOwlItalic = baseClone3
-  const noItalic = {
-    ...baseClone2,
-    name: 'Dracpurp (No Italic)',
-    tokenColors: baseClone2.tokenColors.map((obj) => {
-      const newObj = _.cloneDeep(obj)
-      if (newObj?.settings?.fontStyle) {
-        newObj.settings.fontStyle = newObj.settings.fontStyle.replace('italic', '').trim()
-      }
-      return newObj
-    }),
-  }
-
-  const newBase = {
-    ...baseClone1,
-    name: 'Dracpurp',
-    tokenColors: baseClone1.tokenColors.filter((obj) => {
-      return !obj?.name?.startsWith('OM_SETTING')
-    }),
-  }
-
-  const highContrast = {
-    ...baseClone4,
-    name: 'Dracpurp High Contrast',
-    colors: {
-      ...baseClone4.colors,
-      'editor.background': '#000000',
+  const baseVariants = {
+    'base': {
+       ..._.cloneDeep(rawBase),
+       name: 'Dracpurp',
+       tokenColors: rawBase.tokenColors.filter(obj => !obj?.name?.startsWith('OM_SETTING'))
     },
-    tokenColors: baseClone4.tokenColors.filter((obj) => {
-        return !obj?.name?.startsWith('OM_SETTING')
-      }),
+    'nightOwlItalic': {
+       ..._.cloneDeep(rawBase),
+       name: 'Dracpurp (Night Owl Italic)'
+    },
+    'noItalic': {
+       ..._.cloneDeep(rawBase),
+       name: 'Dracpurp (No Italic)',
+       tokenColors: rawBase.tokenColors.map(obj => {
+         const newObj = _.cloneDeep(obj)
+         if (newObj?.settings?.fontStyle) {
+           newObj.settings.fontStyle = newObj.settings.fontStyle.replace('italic', '').trim()
+         }
+         return newObj
+       })
+    }
   }
 
-  return {
-    base: newBase,
-    nightOwlItalic: { ...nightOwlItalic, name: 'Dracpurp (Night Owl Italic)' },
-    noItalic,
-    highContrast,
+  const results = {}
+
+  const EGGSHELL_VAL = '#F0EAD6'
+  const DRACPURP_ORANGE_VAL = '#DE9C3E'
+  const DRACULA_ORANGE_VAL = '#FFB86C'
+
+  function transform(theme, nameSuffix, bg, useEggshell) {
+    const t = _.cloneDeep(theme)
+    t.name = `${theme.name}${nameSuffix}`
+    if (bg) t.colors['editor.background'] = bg
+    if (useEggshell) {
+      t.tokenColors = t.tokenColors.map(tc => {
+        if (tc.settings && (tc.settings.foreground === DRACPURP_ORANGE_VAL || tc.settings.foreground === DRACULA_ORANGE_VAL)) {
+          const newTc = _.cloneDeep(tc)
+          newTc.settings.foreground = EGGSHELL_VAL
+          return newTc
+        }
+        return tc
+      })
+    }
+    return t
   }
+
+  Object.entries(baseVariants).forEach(([key, bt]) => {
+    results[key] = bt
+    results[`${key}HC`] = transform(bt, ' High Contrast', '#000000', false)
+    results[`${key}Eggshell`] = transform(bt, ' Eggshell', null, true)
+    results[`${key}HCEggshell`] = transform(bt, ' High Contrast Eggshell', '#000000', true)
+  })
+
+  // Add the 4th "Original" variant (Dracula-based)
+  const draculaYamlFile = await readFile(join(__dirname, '..', 'src', 'dracula.yml'), 'utf-8')
+  const rawDracula = load(draculaYamlFile, { schema })
+
+  // Minimal cleanup for Dracula
+  for (const key of Object.keys(rawDracula.colors)) {
+    if (!rawDracula.colors[key]) {
+      delete rawDracula.colors[key]
+    }
+  }
+
+  const draculaVariants = {
+    'dracula': {
+      ..._.cloneDeep(rawDracula),
+      name: 'Dracpurp Original'
+    }
+  }
+
+  Object.entries(draculaVariants).forEach(([key, bt]) => {
+    results[key] = bt
+    results[`${key}HC`] = transform(bt, ' High Contrast', '#000000', false)
+    results[`${key}Eggshell`] = transform(bt, ' Eggshell', null, true)
+    results[`${key}HCEggshell`] = transform(bt, ' High Contrast Eggshell', '#000000', true)
+  })
+
+  return results
 }
