@@ -4,8 +4,16 @@ const path = require('node:path')
 const { createHighlighter } = require('shiki')
 
 async function generateScreenshots() {
-  const THEME_DIR = path.join(__dirname, '..', 'theme')
+  const ROOT_DIR = path.join(__dirname, '..')
+  const THEME_DIR = path.join(ROOT_DIR, 'theme')
   const themeFiles = fs.readdirSync(THEME_DIR).filter(f => f.endsWith('.json'))
+
+  // Delete old screenshots before regeneration
+  const oldScreenshots = fs.readdirSync(ROOT_DIR).filter(f => f.startsWith('screenshot-') && f.endsWith('.png'))
+  for (const screenshot of oldScreenshots) {
+    fs.unlinkSync(path.join(ROOT_DIR, screenshot))
+    console.log(`Deleted old screenshot: ${screenshot}`)
+  }
 
   const SAMPLES = [
     { name: 'battle-strategy.ts', file: 'samples/battle-strategy.ts', lang: 'typescript' },
@@ -34,7 +42,7 @@ async function generateScreenshots() {
     })
 
     for (const sample of SAMPLES) {
-      const sampleCode = fs.readFileSync(path.join(__dirname, '..', sample.file), 'utf-8')
+      const sampleCode = fs.readFileSync(path.join(ROOT_DIR, sample.file), 'utf-8')
       const htmlCode = highlighter.codeToHtml(sampleCode, {
         lang: sample.lang,
         theme: themeName,
@@ -65,7 +73,7 @@ async function generateScreenshots() {
     .line-numbers { width: 50px; padding: 20px 0; text-align: right; padding-right: 15px; color: var(--line-number); }
     .code-view { flex: 1; padding: 20px 10px; }
     pre { margin: 0; background-color: transparent !important; }
-    .status-bar { height: 22px; background-color: var(--title-bg); }
+    .status-bar { height: 22px; background-color: var(--status-bg); }
   </style>
 </head>
 <body>
@@ -91,7 +99,7 @@ async function generateScreenshots() {
 `
       await page.setContent(htmlContent)
       await page.waitForTimeout(300)
-      const screenshotPath = path.join(__dirname, '..', `screenshot-${themeKey}-${sample.lang}.png`)
+      const screenshotPath = path.join(ROOT_DIR, `screenshot-${themeKey}-${sample.lang}.png`)
       await page.screenshot({ path: screenshotPath })
       console.log(`Saved: ${screenshotPath}`)
     }
