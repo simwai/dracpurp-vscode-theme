@@ -56,9 +56,20 @@ module.exports = async () => {
   function transform(theme, nameSuffix, bg, useEggshell) {
     const t = _.cloneDeep(theme)
     t.name = `${theme.name}${nameSuffix}`
-    if (bg) t.colors['editor.background'] = bg
+
+    // Only background and syntax highlighting (tokenColors) can change
+    // We must preserve all other UI colors as they are in the base theme.
+    // However, the user specifically allowed changing "bg purple shade".
+    // In VS Code themes, 'editor.background' is the primary bg.
+
+    if (bg) {
+      t.colors['editor.background'] = bg
+    }
+
     if (useEggshell) {
       t.tokenColors = t.tokenColors.map(tc => {
+        // Broadly replace orange with eggshell to ensure all variable related scopes (definition and usage)
+        // are updated consistently.
         if (tc.settings && (tc.settings.foreground === DRACPURP_ORANGE_VAL || tc.settings.foreground === DRACULA_ORANGE_VAL)) {
           const newTc = _.cloneDeep(tc)
           newTc.settings.foreground = EGGSHELL_VAL
