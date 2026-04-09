@@ -8,35 +8,37 @@ _By simwai, evolving into the cyberpunk future._
 
 In the digital frontier, clarity is paramount. Dracpurp provides a cognitive interface that minimizes ocular fatigue while maximizing structural focus. We now offer an expanded spectrum of 16 variants to match your exact cognitive frequency.
 
-### Dracpurp (The Singularity)
-Our flagship manifestation. A perfect equilibrium of deep shadow and neon highlights.
+### The Dracpurp Spectrum (16 Manifestations)
 
-[![Dracpurp Singularity](./screenshot-dracpurp.png)](./screenshot-dracpurp.png)
+Our aesthetic manifold has expanded. Explore the variations of our four primary lineages:
 
-### Dracpurp (High Contrast)
-For the digital void-walkers. Absolute zero background (#000000) for maximum chromatic pop.
+#### 1. Dracpurp (The Singularity)
+The core evolution. Deep substrate, neon highlights.
+- [Standard Manifestation](./screenshot-dracpurp.png)
+- [High Contrast](./screenshot-dracpurp-baseHC.png)
+- [Eggshell](./screenshot-dracpurp-baseEggshell.png)
+- [High Contrast Eggshell](./screenshot-dracpurp-baseHCEggshell.png)
 
-[![High Contrast](./screenshot-dracpurp-baseHC.png)](./screenshot-dracpurp-baseHC.png)
+#### 2. Dracpurp (Night Owl Italic)
+Semantic flow via elegant italics.
+- [Standard Manifestation](./screenshot-dracpurp-nightOwlItalic.png)
+- [High Contrast](./screenshot-dracpurp-nightOwlItalicHC.png)
+- [Eggshell](./screenshot-dracpurp-nightOwlItalicEggshell.png)
+- [High Contrast Eggshell](./screenshot-dracpurp-nightOwlItalicHCEggshell.png)
 
-### Dracpurp (Eggshell)
-A softer approach to semantics. Variable names rendered in a gentle Eggshell (#F0EAD6) instead of the high-energy Orange.
+#### 3. Dracpurp (No Italic)
+Pure structural rigidity.
+- [Standard Manifestation](./screenshot-dracpurp-noItalic.png)
+- [High Contrast](./screenshot-dracpurp-noItalicHC.png)
+- [Eggshell](./screenshot-dracpurp-noItalicEggshell.png)
+- [High Contrast Eggshell](./screenshot-dracpurp-noItalicHCEggshell.png)
 
-[![Eggshell](./screenshot-dracpurp-baseEggshell.png)](./screenshot-dracpurp-baseEggshell.png)
-
-## The Spectrum of Reality
-
-Dracpurp now manifests in four primary aesthetic lineages, each with four structural variations:
-
-1.  **Dracpurp (The Singularity):** The core evolution.
-2.  **Dracpurp (Night Owl Italic):** Semantic flow via elegant italics.
-3.  **Dracpurp (No Italic):** Pure structural rigidity.
-4.  **Dracpurp Original:** A homage to the ancestral Dracula roots.
-
-### Structural Variations for Each Lineage:
-- **Standard:** The balanced substrate.
-- **High Contrast:** The digital void (Pure Black background).
-- **Eggshell:** Soft white variables for reduced cognitive load.
-- **High Contrast Eggshell:** The ultimate focused interface.
+#### 4. Dracpurp Original (Dracula Homage)
+A tribute to the ancestral roots.
+- [Standard Manifestation](./screenshot-dracpurp-dracula.png)
+- [High Contrast](./screenshot-dracpurp-draculaHC.png)
+- [Eggshell](./screenshot-dracpurp-draculaEggshell.png)
+- [High Contrast Eggshell](./screenshot-dracpurp-draculaHCEggshell.png)
 
 ## Installation: Seamless Integration
 
