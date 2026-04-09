@@ -21,7 +21,22 @@ For the midnight architects who find elegance in the semantic flow of italicized
 ### Dracpurp (The Pure Logic - No Italic)
 Unwavering structural integrity. Code as rigid as the laws of physics.
 
-[![No Italic](./screenshot-dracpurp-no-italic.png)](./screenshot-dracpurp-no-italic.png)
+[![No Italic](./screenshot-dracpurp-no-italic.png)](./screenshot-dracpurp-no-italic.png)\n
+### Dracpurp Mocha
+The Original Catppuccin — Our darkest variant offering a cozy feeling with color-rich accents.
+
+[![Dracpurp Mocha](./screenshot-mocha.png)](./screenshot-mocha.png)
+
+### Dracpurp Macchiato
+Medium contrast with gentle colors creating a soothing atmosphere.
+
+[![Dracpurp Macchiato](./screenshot-macchiato.png)](./screenshot-macchiato.png)
+
+### Dracpurp Frappé
+A less vibrant alternative using subdued colors for a muted aesthetic.
+
+[![Dracpurp Frappé](./screenshot-frappe.png)](./screenshot-frappe.png)
+
 
 ## The Emergence of Dracpurp
 
@@ -34,8 +49,11 @@ Imagine a world where the background isn't just dark, but an **Abyssal Substrate
 Dracpurp comes in three distinct flavors, because we know the mind functions best when the aesthetic matches its current internal state:
 
 1.  **Dracpurp (The Singularity):** The core experience. Clean, sharp, and focused.
-2.  **Dracpurp (Night Owl Italic):** For the dreamers and the midnight architects. A subtle, elegant use of italics to guide your semantic flow.
-3.  **Dracpurp (No Italic):** Pure structural integrity. For those who prefer their code as rigid and unwavering as a blockchain ledger.
+2.  **Dracpurp Mocha:** High-contrast dark with rich colors.
+3.  **Dracpurp Macchiato:** Mid-contrast dark with gentle tones.
+4.  **Dracpurp Frappé:** Low-contrast dark with a muted aesthetic.
+5.  **Night Owl Italic:** Substrate for the semantic flow of italicized logic.
+6.  **No Italic:** Pure structural integrity.
 
 ## Installation: Seamless Integration
 

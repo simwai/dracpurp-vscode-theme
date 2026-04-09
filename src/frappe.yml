@@ -26,6 +26,7 @@ dracula:
     - &PEACH '#ef9f76'
     - &FLAMINGO '#eebebe'
     - &PINK_DARK '#aa809f'
+    - &FLAMINGO_DARK '#aa809f'
     # UI Component Anchors
     - &OVERLAY2 '#949cbb'
     - &OVERLAY1 '#838ba7'
@@ -208,9 +209,9 @@ colors:
   list.filterMatchBackground: *MATCH_HIGHLIGHT
   list.filterMatchBorder: *ACCENT_BRIGHT
   list.deemphasizedForeground: *OVERLAY2
-  list.errorForeground: '#ff6b6b'
+  list.errorForeground: *ERROR
   list.warningForeground: *WARNING
-  list.invalidItemForeground: '#ff6b6b'
+  list.invalidItemForeground: *ERROR
   quickInput.background: *BGLighter
   quickInput.foreground: *PEACH
   quickInputList.focusBackground: *LINE_HIGHLIGHT_BG
@@ -329,7 +330,7 @@ colors:
   notifications.foreground: *PEACH
   notifications.border: *BORDER
   notificationLink.foreground: *ACCENT_BRIGHT
-  notificationsErrorIcon.foreground: '#ff6b6b'
+  notificationsErrorIcon.foreground: *ERROR
   notificationsWarningIcon.foreground: *WARNING
   notificationsInfoIcon.foreground: *ACCENT_BRIGHT
   extensionButton.prominentBackground: *ACCENT
@@ -379,7 +380,7 @@ colors:
   disabledForeground: *COMMENT
   selection.background: '#2d0744'
   descriptionForeground: *OVERLAY2
-  errorForeground: '#ff6b6b'
+  errorForeground: *ERROR
   icon.foreground: *PEACH
   sash.hoverBorder: *ACCENT
   focusBorder: *ACCENT

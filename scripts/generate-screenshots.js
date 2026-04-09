@@ -15,6 +15,9 @@ const THEMES = [
     file: 'theme/dracpurp-noItalic.json',
     output: 'screenshot-dracpurp-no-italic.png',
   },
+  { name: 'Dracpurp Mocha', file: 'theme/dracpurp-mocha.json', output: 'screenshot-mocha.png' },
+  { name: 'Dracpurp Macchiato', file: 'theme/dracpurp-macchiato.json', output: 'screenshot-macchiato.png' },
+  { name: 'Dracpurp Frappe', file: 'theme/dracpurp-frappe.json', output: 'screenshot-frappe.png' },
 ]
 
 const SAMPLE_CODE_PATH = path.join(__dirname, '..', 'samples', 'battle-strategy.ts')
@@ -24,7 +27,7 @@ async function generateScreenshots() {
   const browser = await chromium.launch()
   const context = await browser.newContext({
     viewport: { width: 1400, height: 1000 },
-    deviceScaleFactor: 2, // High resolution for sharp screenshots
+    deviceScaleFactor: 2,
   })
   const page = await context.newPage()
 
@@ -37,7 +40,6 @@ async function generateScreenshots() {
     }
     const themeData = JSON.parse(fs.readFileSync(themePath, 'utf-8'))
 
-    // Create highlighter with the custom theme
     const highlighter = await createHighlighter({
       themes: [themeData],
       langs: ['typescript'],
@@ -50,34 +52,33 @@ async function generateScreenshots() {
 
     const colors = themeData.colors || {}
 
-    // Mock VS Code UI Template with improved accuracy (Line Numbers, etc.)
     const htmlContent = `
 <!DOCTYPE html>
 <html>
 <head>
   <style>
     :root {
-      --bg: ${colors['editor.background'] || '#100e12'};
-      --fg: ${colors['editor.foreground'] || '#e8e8e8'};
-      --title-bg: ${colors['titleBar.activeBackground'] || '#11021a'};
-      --title-fg: ${colors['titleBar.activeForeground'] || '#e8e8e8'};
-      --activity-bg: ${colors['activityBar.background'] || '#11021a'};
-      --activity-fg: ${colors['activityBar.foreground'] || '#ffffff'};
-      --activity-inactive: ${colors['activityBar.inactiveForeground'] || '#8b6b9e'};
-      --sidebar-bg: ${colors['sideBar.background'] || '#11021a'};
-      --sidebar-fg: ${colors['sideBar.foreground'] || '#e8e8e8'};
-      --sidebar-border: ${colors['sideBar.border'] || '#35094e'};
-      --tabs-bg: ${colors['editorGroupHeader.tabsBackground'] || '#11021a'};
-      --tab-active-bg: ${colors['tab.activeBackground'] || '#100e12'};
-      --tab-active-fg: ${colors['tab.activeForeground'] || '#ffffff'};
-      --tab-inactive-bg: ${colors['tab.inactiveBackground'] || '#11021a'};
-      --tab-inactive-fg: ${colors['tab.inactiveForeground'] || '#8b6b9e'};
-      --tab-border: ${colors['tab.border'] || '#35094e'};
-      --status-bg: ${colors['statusBar.background'] || '#11021a'};
-      --status-fg: ${colors['statusBar.foreground'] || '#e8e8e8'};
-      --line-number: ${colors['editorLineNumber.foreground'] || '#4b2a5e'};
-      --line-highlight: ${colors['editor.lineHighlightBackground'] || '#2d074460'};
-      --selection: ${colors['editor.selectionBackground'] || '#2d0744'};
+      --bg: ${colors['editor.background']};
+      --fg: ${colors['editor.foreground']};
+      --title-bg: ${colors['titleBar.activeBackground'] || colors['sideBar.background']};
+      --title-fg: ${colors['titleBar.activeForeground'] || colors['editor.foreground']};
+      --activity-bg: ${colors['activityBar.background'] || colors['sideBar.background']};
+      --activity-fg: ${colors['activityBar.foreground'] || colors['editor.foreground']};
+      --activity-inactive: ${colors['activityBar.inactiveForeground'] || colors['tab.inactiveForeground']};
+      --sidebar-bg: ${colors['sideBar.background']};
+      --sidebar-fg: ${colors['sideBar.foreground']};
+      --sidebar-border: ${colors['sideBar.border'] || colors['editorGroup.border']};
+      --tabs-bg: ${colors['editorGroupHeader.tabsBackground'] || colors['editor.background']};
+      --tab-active-bg: ${colors['tab.activeBackground'] || colors['editor.background']};
+      --tab-active-fg: ${colors['tab.activeForeground'] || colors['editor.foreground']};
+      --tab-inactive-bg: ${colors['tab.inactiveBackground'] || colors['editor.background']};
+      --tab-inactive-fg: ${colors['tab.inactiveForeground'] || colors['editor.foreground']};
+      --tab-border: ${colors['tab.border'] || colors['editorGroup.border']};
+      --status-bg: ${colors['statusBar.background'] || colors['sideBar.background']};
+      --status-fg: ${colors['statusBar.foreground'] || colors['editor.foreground']};
+      --line-number: ${colors['editorLineNumber.foreground'] || colors['tab.inactiveForeground']};
+      --line-highlight: ${colors['editor.lineHighlightBackground'] || colors['editor.selectionBackground']};
+      --selection: ${colors['editor.selectionBackground']};
     }
 
     body {
@@ -151,7 +152,7 @@ async function generateScreenshots() {
     }
     .activity-icon.active {
       background-color: var(--activity-fg);
-      border-left: 2px solid ${colors['activityBar.activeBorder'] || '#a025e7'};
+      border-left: 2px solid ${colors['activityBar.activeBorder'] || colors['tab.activeBorder']};
     }
     .side-bar {
       width: 260px;
@@ -181,8 +182,8 @@ async function generateScreenshots() {
       opacity: 0.8;
     }
     .file-item.active {
-      background-color: ${colors['list.activeSelectionBackground'] || '#2d074480'};
-      color: ${colors['list.activeSelectionForeground'] || '#ffffff'};
+      background-color: ${colors['list.activeSelectionBackground'] || colors['editor.selectionBackground']};
+      color: ${colors['list.activeSelectionForeground'] || colors['editor.foreground']};
       opacity: 1;
     }
     .editor-area {
@@ -219,7 +220,7 @@ async function generateScreenshots() {
       left: 0;
       right: 0;
       height: 1px;
-      background-color: ${colors['tab.activeBorder'] || '#a025e7'};
+      background-color: ${colors['tab.activeBorder']};
     }
     .editor-content {
       flex: 1;
@@ -268,7 +269,7 @@ async function generateScreenshots() {
       gap: 15px;
     }
     .status-item-blue {
-      background-color: ${colors['statusBarItem.remoteBackground'] || '#a025e7'};
+      background-color: ${colors['statusBarItem.remoteBackground'] || colors['activityBar.activeBorder']};
       height: 100%;
       padding: 0 10px;
       display: flex;
@@ -333,7 +334,6 @@ async function generateScreenshots() {
 `
 
     await page.setContent(htmlContent)
-    // Wait for any potential rendering
     await page.waitForTimeout(500)
 
     const screenshotPath = path.join(__dirname, '..', themeInfo.output)

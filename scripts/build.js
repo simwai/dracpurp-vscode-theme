@@ -9,19 +9,30 @@ if (!fs.existsSync(THEME_DIR)) {
 }
 
 module.exports = async () => {
-  const { base, nightOwlItalic, noItalic } = await generate()
+  const flavors = await generate()
 
-  return Promise.all([
-    fs.promises.writeFile(path.join(THEME_DIR, 'dracpurp.json'), JSON.stringify(base, null, 4)),
-    fs.promises.writeFile(
-      path.join(THEME_DIR, 'dracpurp-noItalic.json'),
-      JSON.stringify(noItalic, null, 4),
-    ),
-    fs.promises.writeFile(
-      path.join(THEME_DIR, 'dracpurp-nightOwlItalic.json'),
-      JSON.stringify(nightOwlItalic, null, 4),
-    ),
-  ])
+  const writePromises = []
+
+  for (const [key, variants] of Object.entries(flavors)) {
+    const prefix = key === 'dracpurp' ? 'dracpurp' : `dracpurp-${key}`
+
+    writePromises.push(
+      fs.promises.writeFile(
+        path.join(THEME_DIR, `${prefix}.json`),
+        JSON.stringify(variants.base, null, 4)
+      ),
+      fs.promises.writeFile(
+        path.join(THEME_DIR, `${prefix}-noItalic.json`),
+        JSON.stringify(variants.noItalic, null, 4),
+      ),
+      fs.promises.writeFile(
+        path.join(THEME_DIR, `${prefix}-nightOwlItalic.json`),
+        JSON.stringify(variants.nightOwlItalic, null, 4),
+      ),
+    )
+  }
+
+  return Promise.all(writePromises)
 }
 
 if (require.main === module) {
