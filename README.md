@@ -6,11 +6,11 @@ _By simwai, evolving into the cyberpunk future._
 
 ## The Aesthetic Manifold: Visual Insights
 
-In the digital frontier, clarity is paramount. Dracpurp provides a cognitive interface that minimizes ocular fatigue while maximizing structural focus. We now offer an expanded spectrum of 12 variants to match your exact cognitive frequency.
+In the digital frontier, clarity is paramount. Dracpurp provides a cognitive interface that minimizes ocular fatigue while maximizing structural focus. We now offer a refined spectrum of 12 variants.
 
 ### The Dracpurp Spectrum (12 Manifestations)
 
-Our aesthetic manifold has expanded. Explore the variations of our four primary lineages across different logical structures:
+Our aesthetic manifold has reached a state of visual equilibrium. Explore the variations of our four primary lineages:
 
 #### 1. Dracpurp (The Singularity)
 The core evolution. Deep substrate, neon highlights.
