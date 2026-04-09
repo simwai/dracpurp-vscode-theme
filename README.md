@@ -10,48 +10,35 @@ In the digital frontier, clarity is paramount. Dracpurp provides a cognitive int
 
 ### The Dracpurp Spectrum (16 Manifestations)
 
-Our aesthetic manifold has expanded. Explore the variations of our four primary lineages:
+Our aesthetic manifold has expanded. Explore the variations of our four primary lineages across different logical structures:
 
 #### 1. Dracpurp (The Singularity)
 The core evolution. Deep substrate, neon highlights.
-- [Standard Manifestation](./screenshot-dracpurp.png)
-- [High Contrast](./screenshot-dracpurp-baseHC.png)
-- [Eggshell](./screenshot-dracpurp-baseEggshell.png)
-- [High Contrast Eggshell](./screenshot-dracpurp-baseHCEggshell.png)
+- **Standard:** [TS](./screenshot-dracpurp-typescript.png) | [Java](./screenshot-dracpurp-java.png) | [C#](./screenshot-dracpurp-csharp.png)
+- **High Contrast:** [TS](./screenshot-dracpurp-baseHC-typescript.png) | [Java](./screenshot-dracpurp-baseHC-java.png) | [C#](./screenshot-dracpurp-baseHC-csharp.png)
+- **Eggshell:** [TS](./screenshot-dracpurp-baseEggshell-typescript.png) | [Java](./screenshot-dracpurp-baseEggshell-java.png) | [C#](./screenshot-dracpurp-baseEggshell-csharp.png)
+- **HC Eggshell:** [TS](./screenshot-dracpurp-baseHCEggshell-typescript.png) | [Java](./screenshot-dracpurp-baseHCEggshell-java.png) | [C#](./screenshot-dracpurp-baseHCEggshell-csharp.png)
 
 #### 2. Dracpurp (Night Owl Italic)
 Semantic flow via elegant italics.
-- [Standard Manifestation](./screenshot-dracpurp-nightOwlItalic.png)
-- [High Contrast](./screenshot-dracpurp-nightOwlItalicHC.png)
-- [Eggshell](./screenshot-dracpurp-nightOwlItalicEggshell.png)
-- [High Contrast Eggshell](./screenshot-dracpurp-nightOwlItalicHCEggshell.png)
+- **Standard:** [TS](./screenshot-dracpurp-nightOwlItalic-typescript.png) | [Java](./screenshot-dracpurp-nightOwlItalic-java.png) | [C#](./screenshot-dracpurp-nightOwlItalic-csharp.png)
+- **High Contrast:** [TS](./screenshot-dracpurp-nightOwlItalicHC-typescript.png) | [Java](./screenshot-dracpurp-nightOwlItalicHC-java.png) | [C#](./screenshot-dracpurp-nightOwlItalicHC-csharp.png)
+- **Eggshell:** [TS](./screenshot-dracpurp-nightOwlItalicEggshell-typescript.png) | [Java](./screenshot-dracpurp-nightOwlItalicEggshell-java.png) | [C#](./screenshot-dracpurp-nightOwlItalicEggshell-csharp.png)
+- **HC Eggshell:** [TS](./screenshot-dracpurp-nightOwlItalicHCEggshell-typescript.png) | [Java](./screenshot-dracpurp-nightOwlItalicHCEggshell-java.png) | [C#](./screenshot-dracpurp-nightOwlItalicHCEggshell-csharp.png)
 
 #### 3. Dracpurp (No Italic)
 Pure structural rigidity.
-- [Standard Manifestation](./screenshot-dracpurp-noItalic.png)
-- [High Contrast](./screenshot-dracpurp-noItalicHC.png)
-- [Eggshell](./screenshot-dracpurp-noItalicEggshell.png)
-- [High Contrast Eggshell](./screenshot-dracpurp-noItalicHCEggshell.png)
+- **Standard:** [TS](./screenshot-dracpurp-noItalic-typescript.png) | [Java](./screenshot-dracpurp-noItalic-java.png) | [C#](./screenshot-dracpurp-noItalic-csharp.png)
+- **High Contrast:** [TS](./screenshot-dracpurp-noItalicHC-typescript.png) | [Java](./screenshot-dracpurp-noItalicHC-java.png) | [C#](./screenshot-dracpurp-noItalicHC-csharp.png)
+- **Eggshell:** [TS](./screenshot-dracpurp-noItalicEggshell-typescript.png) | [Java](./screenshot-dracpurp-noItalicEggshell-java.png) | [C#](./screenshot-dracpurp-noItalicEggshell-csharp.png)
+- **HC Eggshell:** [TS](./screenshot-dracpurp-noItalicHCEggshell-typescript.png) | [Java](./screenshot-dracpurp-noItalicHCEggshell-java.png) | [C#](./screenshot-dracpurp-noItalicHCEggshell-csharp.png)
 
 #### 4. Dracpurp Original (Dracula Homage)
 A tribute to the ancestral roots.
-- [Standard Manifestation](./screenshot-dracpurp-dracula.png)
-- [High Contrast](./screenshot-dracpurp-draculaHC.png)
-- [Eggshell](./screenshot-dracpurp-draculaEggshell.png)
-- [High Contrast Eggshell](./screenshot-dracpurp-draculaHCEggshell.png)
-
-## Multi-Language Manifestations
-
-Dracpurp's cognitive interface adapts seamlessly to various logical structures:
-
-### Java (Sword Art Online Edition)
-[![Java](./screenshot-lang-java.png)](./screenshot-lang-java.png)
-
-### C# (Cyberpunk Edgerunners Edition)
-[![C#](./screenshot-lang-csharp.png)](./screenshot-lang-csharp.png)
-
-### TypeScript (The Great Kanto Singularity)
-[![TypeScript](./screenshot-lang-typescript.png)](./screenshot-lang-typescript.png)
+- **Standard:** [TS](./screenshot-dracpurp-dracula-typescript.png) | [Java](./screenshot-dracpurp-dracula-java.png) | [C#](./screenshot-dracpurp-dracula-csharp.png)
+- **High Contrast:** [TS](./screenshot-dracpurp-draculaHC-typescript.png) | [Java](./screenshot-dracpurp-draculaHC-java.png) | [C#](./screenshot-dracpurp-draculaHC-csharp.png)
+- **Eggshell:** [TS](./screenshot-dracpurp-draculaEggshell-typescript.png) | [Java](./screenshot-dracpurp-draculaEggshell-java.png) | [C#](./screenshot-dracpurp-draculaEggshell-csharp.png)
+- **HC Eggshell:** [TS](./screenshot-dracpurp-draculaHCEggshell-typescript.png) | [Java](./screenshot-dracpurp-draculaHCEggshell-java.png) | [C#](./screenshot-dracpurp-draculaHCEggshell-csharp.png)
 
 ## Installation: Seamless Integration
 
