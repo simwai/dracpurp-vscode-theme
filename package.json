@@ -33,7 +33,11 @@
     "cyberpunk",
     "dracula",
     "theme",
-    "color-theme"
+    "color-theme",
+    "catppuccin",
+    "mocha",
+    "frappe",
+    "macchiato"
   ],
   "icon": "icon.png",
   "galleryBanner": {
@@ -56,6 +60,51 @@
         "label": "Dracpurp (No Italic)",
         "uiTheme": "vs-dark",
         "path": "./theme/dracpurp-noItalic.json"
+      },
+      {
+        "label": "Dracpurp Mocha",
+        "uiTheme": "vs-dark",
+        "path": "./theme/dracpurp-mocha.json"
+      },
+      {
+        "label": "Dracpurp Mocha (Night Owl Italic)",
+        "uiTheme": "vs-dark",
+        "path": "./theme/dracpurp-mocha-nightOwlItalic.json"
+      },
+      {
+        "label": "Dracpurp Mocha (No Italic)",
+        "uiTheme": "vs-dark",
+        "path": "./theme/dracpurp-mocha-noItalic.json"
+      },
+      {
+        "label": "Dracpurp Macchiato",
+        "uiTheme": "vs-dark",
+        "path": "./theme/dracpurp-macchiato.json"
+      },
+      {
+        "label": "Dracpurp Macchiato (Night Owl Italic)",
+        "uiTheme": "vs-dark",
+        "path": "./theme/dracpurp-macchiato-nightOwlItalic.json"
+      },
+      {
+        "label": "Dracpurp Macchiato (No Italic)",
+        "uiTheme": "vs-dark",
+        "path": "./theme/dracpurp-macchiato-noItalic.json"
+      },
+      {
+        "label": "Dracpurp Frapp\u00e9",
+        "uiTheme": "vs-dark",
+        "path": "./theme/dracpurp-frappe.json"
+      },
+      {
+        "label": "Dracpurp Frapp\u00e9 (Night Owl Italic)",
+        "uiTheme": "vs-dark",
+        "path": "./theme/dracpurp-frappe-nightOwlItalic.json"
+      },
+      {
+        "label": "Dracpurp Frapp\u00e9 (No Italic)",
+        "uiTheme": "vs-dark",
+        "path": "./theme/dracpurp-frappe-noItalic.json"
       }
     ]
   },

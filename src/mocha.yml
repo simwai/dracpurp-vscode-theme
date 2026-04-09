@@ -1,49 +1,49 @@
 $schema: vscode://schemas/color-theme
-name: Dracpurp
+name: Dracpurp Mocha
 author: simwai
 maintainers:
   - simwai
-semanticClass: theme.dracpurp
+semanticClass: theme.dracpurp-mocha
 semanticHighlighting: false
 dracula:
   base:
-    - &BG '#100e12'
-    - &FG '#e8e8e8'
-    - &SELECTION '#2d074496'
-    - &COMMENT '#8b6b9e'
+    - &BG '#1e1e2e'
+    - &FG '#cdd6f4'
+    - &SELECTION '#31324496'
+    - &COMMENT '#6c7086'
     # Syntax
-    - &CYAN '#6CB5C4'
-    - &GREEN '#3EC25F'
-    - &ORANGE '#DE9C3E'
-    - &PINK '#FF79C6'
-    - &PURPLE '#C095FC'
-    - &RED '#FF8585'
-    - &YELLOW '#AAB063'
+    - &CYAN '#89dceb'
+    - &GREEN '#a6e3a1'
+    - &ORANGE '#fab387'
+    - &PINK '#f5c2e7'
+    - &PURPLE '#cba6f7'
+    - &RED '#f38ba8'
+    - &YELLOW '#f9e2af'
     # Semantic
-    - &TEAL '#6CB5C4'
-    - &LAVENDER '#C095FC'
-    - &MAROON '#FF8585'
-    - &PEACH '#DE9C3E'
-    - &FLAMINGO '#FF79C6'
-    - &PINK_DARK '#bd5993'
+    - &TEAL '#94e2d5'
+    - &LAVENDER '#b4befe'
+    - &MAROON '#eba0ac'
+    - &PEACH '#fab387'
+    - &FLAMINGO '#f2cdcd'
+    - &PINK_DARK '#ab87a1'
     # UI Component Anchors
-    - &OVERLAY2 '#8b6b9e'
-    - &OVERLAY1 '#8b6b9e'
-    - &OVERLAY0 '#8b6b9e'
-    - &SURFACE2 '#35094e'
-    - &SURFACE1 '#35094e'
-    - &SURFACE0 '#35094e'
-    - &MANTLE '#11021a'
-    - &CRUST '#0e0217'
-    - &BORDER '#35094e'
-    - &ACCENT '#a025e7'
-    - &ACCENT_BRIGHT '#b83dff'
-    - &MATCH_HIGHLIGHT '#5d1388'
-    - &SELECTION_BG '#2d074496'
-    - &LINE_HIGHLIGHT_BG '#2d074480'
-    - &ERROR '#FF8585'
-    - &WARNING '#DE9C3E'
-    - &SUCCESS '#3EC25F'
+    - &OVERLAY2 '#9399b2'
+    - &OVERLAY1 '#7f849c'
+    - &OVERLAY0 '#6c7086'
+    - &SURFACE2 '#585b70'
+    - &SURFACE1 '#45475a'
+    - &SURFACE0 '#313244'
+    - &MANTLE '#181825'
+    - &CRUST '#11111b'
+    - &BORDER '#45475a'
+    - &ACCENT '#cba6f7'
+    - &ACCENT_BRIGHT '#b4befe'
+    - &MATCH_HIGHLIGHT '#585b70'
+    - &SELECTION_BG '#31324496'
+    - &LINE_HIGHLIGHT_BG '#31324480'
+    - &ERROR '#f38ba8'
+    - &WARNING '#fab387'
+    - &SUCCESS '#a6e3a1'
   ansi:
     - &COLOR0 '#11021a'
     - &COLOR1 '#FF8585'
@@ -65,14 +65,14 @@ dracula:
     - &TEMP_QUOTES '#AAB063'
     - &TEMP_PROPERTY_QUOTES '#6CB5C4'
   other:
-    - &LineHighlight '#2d074480'
-    - &NonText '#35094e40'
+    - &LineHighlight '#31324480'
+    - &NonText '#31324440'
     - &WHITE '#ffffff'
-    - &TAB_DROP_BG '#2d074460'
-    - &BGLighter '#1b0429'
-    - &BGLight '#11021a'
-    - &BGDark '#100e12'
-    - &BGDarker '#0e0217'
+    - &TAB_DROP_BG '#31324460'
+    - &BGLighter '#181825'
+    - &BGLight '#181825'
+    - &BGDark '#1e1e2e'
+    - &BGDarker '#11111b'
 colors:
   editor.background: *BG
   editor.selectionBackground: *SELECTION_BG

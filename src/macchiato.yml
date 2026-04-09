@@ -1,49 +1,49 @@
 $schema: vscode://schemas/color-theme
-name: Dracpurp
+name: Dracpurp Macchiato
 author: simwai
 maintainers:
   - simwai
-semanticClass: theme.dracpurp
+semanticClass: theme.dracpurp-macchiato
 semanticHighlighting: false
 dracula:
   base:
-    - &BG '#100e12'
-    - &FG '#e8e8e8'
-    - &SELECTION '#2d074496'
-    - &COMMENT '#8b6b9e'
+    - &BG '#24273a'
+    - &FG '#cad3f5'
+    - &SELECTION '#363a4f96'
+    - &COMMENT '#6e738d'
     # Syntax
-    - &CYAN '#6CB5C4'
-    - &GREEN '#3EC25F'
-    - &ORANGE '#DE9C3E'
-    - &PINK '#FF79C6'
-    - &PURPLE '#C095FC'
-    - &RED '#FF8585'
-    - &YELLOW '#AAB063'
+    - &CYAN '#91d7e3'
+    - &GREEN '#a6da95'
+    - &ORANGE '#f5a97f'
+    - &PINK '#f5bde6'
+    - &PURPLE '#c6a0f6'
+    - &RED '#ed8796'
+    - &YELLOW '#eed49f'
     # Semantic
-    - &TEAL '#6CB5C4'
-    - &LAVENDER '#C095FC'
-    - &MAROON '#FF8585'
-    - &PEACH '#DE9C3E'
-    - &FLAMINGO '#FF79C6'
-    - &PINK_DARK '#bd5993'
+    - &TEAL '#8bd5ca'
+    - &LAVENDER '#b7bdf8'
+    - &MAROON '#ee99a0'
+    - &PEACH '#f5a97f'
+    - &FLAMINGO '#f0c6c6'
+    - &PINK_DARK '#ab84a1'
     # UI Component Anchors
-    - &OVERLAY2 '#8b6b9e'
-    - &OVERLAY1 '#8b6b9e'
-    - &OVERLAY0 '#8b6b9e'
-    - &SURFACE2 '#35094e'
-    - &SURFACE1 '#35094e'
-    - &SURFACE0 '#35094e'
-    - &MANTLE '#11021a'
-    - &CRUST '#0e0217'
-    - &BORDER '#35094e'
-    - &ACCENT '#a025e7'
-    - &ACCENT_BRIGHT '#b83dff'
-    - &MATCH_HIGHLIGHT '#5d1388'
-    - &SELECTION_BG '#2d074496'
-    - &LINE_HIGHLIGHT_BG '#2d074480'
-    - &ERROR '#FF8585'
-    - &WARNING '#DE9C3E'
-    - &SUCCESS '#3EC25F'
+    - &OVERLAY2 '#939ab7'
+    - &OVERLAY1 '#8087a2'
+    - &OVERLAY0 '#6e738d'
+    - &SURFACE2 '#5b6078'
+    - &SURFACE1 '#494d64'
+    - &SURFACE0 '#363a4f'
+    - &MANTLE '#1e2030'
+    - &CRUST '#181926'
+    - &BORDER '#494d64'
+    - &ACCENT '#c6a0f6'
+    - &ACCENT_BRIGHT '#b7bdf8'
+    - &MATCH_HIGHLIGHT '#5b6078'
+    - &SELECTION_BG '#363a4f96'
+    - &LINE_HIGHLIGHT_BG '#363a4f80'
+    - &ERROR '#ed8796'
+    - &WARNING '#f5a97f'
+    - &SUCCESS '#a6da95'
   ansi:
     - &COLOR0 '#11021a'
     - &COLOR1 '#FF8585'
@@ -65,14 +65,14 @@ dracula:
     - &TEMP_QUOTES '#AAB063'
     - &TEMP_PROPERTY_QUOTES '#6CB5C4'
   other:
-    - &LineHighlight '#2d074480'
-    - &NonText '#35094e40'
+    - &LineHighlight '#363a4f80'
+    - &NonText '#363a4f40'
     - &WHITE '#ffffff'
-    - &TAB_DROP_BG '#2d074460'
-    - &BGLighter '#1b0429'
-    - &BGLight '#11021a'
-    - &BGDark '#100e12'
-    - &BGDarker '#0e0217'
+    - &TAB_DROP_BG '#363a4f60'
+    - &BGLighter '#1e2030'
+    - &BGLight '#1e2030'
+    - &BGDark '#24273a'
+    - &BGDarker '#181926'
 colors:
   editor.background: *BG
   editor.selectionBackground: *SELECTION_BG
