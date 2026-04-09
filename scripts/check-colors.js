@@ -7,29 +7,49 @@ const paletteFile = fs.readFileSync(path.join(__dirname, '..', 'src', 'palette.y
 const palette = yaml.load(paletteFile)
 
 const baseColors = palette.base
+const eggshellVariable = palette.eggshell.VARIABLE
 const bg = baseColors.BG
+
+// Include EGGSHELL in the checkable colors manifold
+const colorsToCheck = {
+  ...baseColors,
+  EGGSHELL: eggshellVariable
+}
+
+// Primaries for luminance balance check
 const primaries = ['CYAN', 'GREEN', 'ORANGE', 'PINK', 'PURPLE', 'RED', 'YELLOW']
 
-console.log('Checking Color Balance (Base Palette)...')
-console.log('-------------------------')
+console.log('Checking Color Manifold Consistency...')
+console.log('---------------------------------------')
 
 let hasError = false
 const luminances = []
 
-for (const name of primaries) {
-  const hex = baseColors[name]
+for (const [name, hex] of Object.entries(colorsToCheck)) {
+  if (name === 'BG' || name === 'FG' || name === 'COMMENT' || name === 'SELECTION') continue
+
   const color = tinycolor(hex)
   const lum = color.getLuminance()
   const contrast = tinycolor.readability(bg, hex)
-  luminances.push({ name, lum, contrast })
+
+  if (primaries.includes(name)) {
+      luminances.push({ name, lum, contrast })
+  }
+
   console.log(
     `${name.padEnd(10)}: ${hex} | Lum: ${lum.toFixed(3)} | Contrast: ${contrast.toFixed(2)}`,
   )
+
+  // Enforce minimum contrast for all syntax colors
+  if (contrast < 7) {
+      console.error(`Error: Color ${name} contrast (${contrast.toFixed(2)}) is below the acceptable threshold of 7.0!`)
+      hasError = true
+  }
 }
 
 const avgLum = luminances.reduce((sum, c) => sum + c.lum, 0) / luminances.length
 console.log('-------------------------')
-console.log(`Average Luminance: ${avgLum.toFixed(3)}`)
+console.log(`Average Primary Luminance: ${avgLum.toFixed(3)}`)
 
 const TOLERANCE = 0.08
 for (const c of luminances) {
@@ -42,17 +62,8 @@ for (const c of luminances) {
   }
 }
 
-// Check Eggshell contrast
-const eggshellHex = palette.eggshell.VARIABLE
-const eggshellContrast = tinycolor.readability(bg, eggshellHex)
-console.log(`Eggshell  : ${eggshellHex} | Contrast: ${eggshellContrast.toFixed(2)}`)
-if (eggshellContrast < 7) {
-    console.error('Error: Eggshell contrast is too low!')
-    hasError = true
-}
-
 if (hasError) {
   process.exit(1)
 } else {
-  console.log('Color balance check passed!')
+  console.log('Color manifold consistency check passed!')
 }
