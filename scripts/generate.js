@@ -11,22 +11,14 @@ const withAlphaType = new Type('!alpha', {
 
 const schema = Schema.create([withAlphaType])
 
-const HC_MAP = {
-  '#6EABB8': '#80C7D6', // CYAN
-  '#49B865': '#54D474', // GREEN
-  '#C99851': '#EBB15F', // ORANGE
-  '#F279BF': '#FF9CD5', // PINK
-  '#B890F0': '#CFADFF', // PURPLE
-  '#ED8282': '#FFA3A3', // RED
-  '#A1A663': '#BCC274', // YELLOW
-}
-
-const EGGSHELL_VAL = '#F0EAD6'
-const DRACPURP_ORANGE_VAL = '#C99851'
-const DRACULA_ORANGE_VAL = '#FFB86C'
-
 module.exports = async () => {
   const yamlFile = await readFile(join(__dirname, '..', 'src', 'dracpurp.yml'), 'utf-8')
+  const paletteFile = await readFile(join(__dirname, '..', 'src', 'palette.yml'), 'utf-8')
+
+  const palette = load(paletteFile)
+  const baseColors = palette.base
+  const hcBoost = palette.hc_boost
+  const eggshellVal = palette.eggshell.VARIABLE
 
   /** @type {Theme} */
   const rawBase = load(yamlFile, { schema })
@@ -75,20 +67,25 @@ module.exports = async () => {
         if (!tc.settings) return tc
         const newTc = _.cloneDeep(tc)
 
+        const currentFg = newTc.settings.foreground?.toUpperCase()
+
         // Handle HC Color Boost
         if (isHC) {
-          const originalFg = newTc.settings.foreground?.toUpperCase()
-          if (HC_MAP[originalFg]) {
-             newTc.settings.foreground = HC_MAP[originalFg]
+          // Find if the current foreground is one of our base primary colors
+          for (const [name, hex] of Object.entries(baseColors)) {
+              if (currentFg === hex.toUpperCase() && hcBoost[name]) {
+                  newTc.settings.foreground = hcBoost[name]
+                  break
+              }
           }
         }
 
         // Handle Eggshell Variables
         if (useEggshell) {
-          // If we are in Eggshell variant, replace the (possibly boosted) orange with Eggshell
-          const currentFg = newTc.settings.foreground?.toUpperCase()
-          if (currentFg === DRACPURP_ORANGE_VAL || currentFg === DRACULA_ORANGE_VAL || currentFg === HC_MAP[DRACPURP_ORANGE_VAL]) {
-            newTc.settings.foreground = EGGSHELL_VAL
+          const finalFg = newTc.settings.foreground?.toUpperCase()
+          // Check if it's the base orange or the boosted orange
+          if (finalFg === baseColors.ORANGE.toUpperCase() || (isHC && finalFg === hcBoost.ORANGE.toUpperCase())) {
+            newTc.settings.foreground = eggshellVal
           }
         }
 
@@ -104,7 +101,6 @@ module.exports = async () => {
     results[`${key}Eggshell`] = transform(bt, ' Eggshell', null, true, false)
   })
 
-  // Add the 4th "Original" variant (Dracula-based)
   const draculaYamlFile = await readFile(join(__dirname, '..', 'src', 'dracula.yml'), 'utf-8')
   const rawDracula = load(draculaYamlFile, { schema })
 

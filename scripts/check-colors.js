@@ -3,26 +3,14 @@ const fs = require('node:fs')
 const path = require('node:path')
 const yaml = require('js-yaml')
 
-const yamlFile = fs.readFileSync(path.join(__dirname, '..', 'src', 'dracpurp.yml'), 'utf-8')
-// _theme is for future use or verification if needed
-const _theme = yaml.load(yamlFile)
+const paletteFile = fs.readFileSync(path.join(__dirname, '..', 'src', 'palette.yml'), 'utf-8')
+const palette = yaml.load(paletteFile)
 
-// Extract base colors from the yaml structure
-const colorLines = yamlFile.split('\n')
-const baseColors = {}
-const colorRegex = /&(\w+)\s+'(#\w+)'/
-
-for (const line of colorLines) {
-  const match = line.match(colorRegex)
-  if (match) {
-    baseColors[match[1]] = match[2]
-  }
-}
-
-const bg = baseColors.BG || '#100e12'
+const baseColors = palette.base
+const bg = baseColors.BG
 const primaries = ['CYAN', 'GREEN', 'ORANGE', 'PINK', 'PURPLE', 'RED', 'YELLOW']
 
-console.log('Checking Color Balance...')
+console.log('Checking Color Balance (Base Palette)...')
 console.log('-------------------------')
 
 let hasError = false
@@ -30,10 +18,6 @@ const luminances = []
 
 for (const name of primaries) {
   const hex = baseColors[name]
-  if (!hex) {
-    console.warn(`Warning: Primary color ${name} not found in base palette.`)
-    continue
-  }
   const color = tinycolor(hex)
   const lum = color.getLuminance()
   const contrast = tinycolor.readability(bg, hex)
@@ -43,12 +27,11 @@ for (const name of primaries) {
   )
 }
 
-// Calculate average luminance and check variance
 const avgLum = luminances.reduce((sum, c) => sum + c.lum, 0) / luminances.length
 console.log('-------------------------')
 console.log(`Average Luminance: ${avgLum.toFixed(3)}`)
 
-const TOLERANCE = 0.08 // Allow some variance but not too much
+const TOLERANCE = 0.08
 for (const c of luminances) {
   const diff = Math.abs(c.lum - avgLum)
   if (diff > TOLERANCE) {
@@ -57,6 +40,15 @@ for (const c of luminances) {
     )
     hasError = true
   }
+}
+
+// Check Eggshell contrast
+const eggshellHex = palette.eggshell.VARIABLE
+const eggshellContrast = tinycolor.readability(bg, eggshellHex)
+console.log(`Eggshell  : ${eggshellHex} | Contrast: ${eggshellContrast.toFixed(2)}`)
+if (eggshellContrast < 7) {
+    console.error('Error: Eggshell contrast is too low!')
+    hasError = true
 }
 
 if (hasError) {
