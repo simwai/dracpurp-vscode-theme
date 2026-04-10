@@ -48,14 +48,194 @@
         "path": "./theme/dracpurp.json"
       },
       {
+        "label": "Dracpurp High Contrast",
+        "uiTheme": "vs-dark",
+        "path": "./theme/dracpurpHC.json"
+      },
+      {
+        "label": "Dracpurp Eggshell",
+        "uiTheme": "vs-dark",
+        "path": "./theme/dracpurpEggshell.json"
+      },
+      {
         "label": "Dracpurp (Night Owl Italic)",
         "uiTheme": "vs-dark",
         "path": "./theme/dracpurp-nightOwlItalic.json"
       },
       {
+        "label": "Dracpurp (Night Owl Italic) High Contrast",
+        "uiTheme": "vs-dark",
+        "path": "./theme/dracpurp-nightOwlItalicHC.json"
+      },
+      {
+        "label": "Dracpurp (Night Owl Italic) Eggshell",
+        "uiTheme": "vs-dark",
+        "path": "./theme/dracpurp-nightOwlItalicEggshell.json"
+      },
+      {
         "label": "Dracpurp (No Italic)",
         "uiTheme": "vs-dark",
         "path": "./theme/dracpurp-noItalic.json"
+      },
+      {
+        "label": "Dracpurp (No Italic) High Contrast",
+        "uiTheme": "vs-dark",
+        "path": "./theme/dracpurp-noItalicHC.json"
+      },
+      {
+        "label": "Dracpurp (No Italic) Eggshell",
+        "uiTheme": "vs-dark",
+        "path": "./theme/dracpurp-noItalicEggshell.json"
+      },
+      {
+        "label": "Dracpurp Mocha",
+        "uiTheme": "vs-dark",
+        "path": "./theme/dracpurp-mocha.json"
+      },
+      {
+        "label": "Dracpurp Mocha High Contrast",
+        "uiTheme": "vs-dark",
+        "path": "./theme/dracpurp-mochaHC.json"
+      },
+      {
+        "label": "Dracpurp Mocha Eggshell",
+        "uiTheme": "vs-dark",
+        "path": "./theme/dracpurp-mochaEggshell.json"
+      },
+      {
+        "label": "Dracpurp Mocha (Night Owl Italic)",
+        "uiTheme": "vs-dark",
+        "path": "./theme/dracpurp-mocha-nightOwlItalic.json"
+      },
+      {
+        "label": "Dracpurp Mocha (Night Owl Italic) High Contrast",
+        "uiTheme": "vs-dark",
+        "path": "./theme/dracpurp-mocha-nightOwlItalicHC.json"
+      },
+      {
+        "label": "Dracpurp Mocha (Night Owl Italic) Eggshell",
+        "uiTheme": "vs-dark",
+        "path": "./theme/dracpurp-mocha-nightOwlItalicEggshell.json"
+      },
+      {
+        "label": "Dracpurp Mocha (No Italic)",
+        "uiTheme": "vs-dark",
+        "path": "./theme/dracpurp-mocha-noItalic.json"
+      },
+      {
+        "label": "Dracpurp Mocha (No Italic) High Contrast",
+        "uiTheme": "vs-dark",
+        "path": "./theme/dracpurp-mocha-noItalicHC.json"
+      },
+      {
+        "label": "Dracpurp Mocha (No Italic) Eggshell",
+        "uiTheme": "vs-dark",
+        "path": "./theme/dracpurp-mocha-noItalicEggshell.json"
+      },
+      {
+        "label": "Dracpurp Macchiato",
+        "uiTheme": "vs-dark",
+        "path": "./theme/dracpurp-macchiato.json"
+      },
+      {
+        "label": "Dracpurp Macchiato High Contrast",
+        "uiTheme": "vs-dark",
+        "path": "./theme/dracpurp-macchiatoHC.json"
+      },
+      {
+        "label": "Dracpurp Macchiato Eggshell",
+        "uiTheme": "vs-dark",
+        "path": "./theme/dracpurp-macchiatoEggshell.json"
+      },
+      {
+        "label": "Dracpurp Macchiato (Night Owl Italic)",
+        "uiTheme": "vs-dark",
+        "path": "./theme/dracpurp-macchiato-nightOwlItalic.json"
+      },
+      {
+        "label": "Dracpurp Macchiato (Night Owl Italic) High Contrast",
+        "uiTheme": "vs-dark",
+        "path": "./theme/dracpurp-macchiato-nightOwlItalicHC.json"
+      },
+      {
+        "label": "Dracpurp Macchiato (Night Owl Italic) Eggshell",
+        "uiTheme": "vs-dark",
+        "path": "./theme/dracpurp-macchiato-nightOwlItalicEggshell.json"
+      },
+      {
+        "label": "Dracpurp Macchiato (No Italic)",
+        "uiTheme": "vs-dark",
+        "path": "./theme/dracpurp-macchiato-noItalic.json"
+      },
+      {
+        "label": "Dracpurp Macchiato (No Italic) High Contrast",
+        "uiTheme": "vs-dark",
+        "path": "./theme/dracpurp-macchiato-noItalicHC.json"
+      },
+      {
+        "label": "Dracpurp Macchiato (No Italic) Eggshell",
+        "uiTheme": "vs-dark",
+        "path": "./theme/dracpurp-macchiato-noItalicEggshell.json"
+      },
+      {
+        "label": "Dracpurp Frappe",
+        "uiTheme": "vs-dark",
+        "path": "./theme/dracpurp-frappe.json"
+      },
+      {
+        "label": "Dracpurp Frappe High Contrast",
+        "uiTheme": "vs-dark",
+        "path": "./theme/dracpurp-frappeHC.json"
+      },
+      {
+        "label": "Dracpurp Frappe Eggshell",
+        "uiTheme": "vs-dark",
+        "path": "./theme/dracpurp-frappeEggshell.json"
+      },
+      {
+        "label": "Dracpurp Frappe (Night Owl Italic)",
+        "uiTheme": "vs-dark",
+        "path": "./theme/dracpurp-frappe-nightOwlItalic.json"
+      },
+      {
+        "label": "Dracpurp Frappe (Night Owl Italic) High Contrast",
+        "uiTheme": "vs-dark",
+        "path": "./theme/dracpurp-frappe-nightOwlItalicHC.json"
+      },
+      {
+        "label": "Dracpurp Frappe (Night Owl Italic) Eggshell",
+        "uiTheme": "vs-dark",
+        "path": "./theme/dracpurp-frappe-nightOwlItalicEggshell.json"
+      },
+      {
+        "label": "Dracpurp Frappe (No Italic)",
+        "uiTheme": "vs-dark",
+        "path": "./theme/dracpurp-frappe-noItalic.json"
+      },
+      {
+        "label": "Dracpurp Frappe (No Italic) High Contrast",
+        "uiTheme": "vs-dark",
+        "path": "./theme/dracpurp-frappe-noItalicHC.json"
+      },
+      {
+        "label": "Dracpurp Frappe (No Italic) Eggshell",
+        "uiTheme": "vs-dark",
+        "path": "./theme/dracpurp-frappe-noItalicEggshell.json"
+      },
+      {
+        "label": "Dracpurp Original",
+        "uiTheme": "vs-dark",
+        "path": "./theme/dracpurp-dracula.json"
+      },
+      {
+        "label": "Dracpurp Original High Contrast",
+        "uiTheme": "vs-dark",
+        "path": "./theme/dracpurp-draculaHC.json"
+      },
+      {
+        "label": "Dracpurp Original Eggshell",
+        "uiTheme": "vs-dark",
+        "path": "./theme/dracpurp-draculaEggshell.json"
       }
     ]
   },

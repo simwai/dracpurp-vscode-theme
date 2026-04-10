@@ -6,7 +6,7 @@ _By simwai, evolving into the cyberpunk future._
 
 ## The Aesthetic Manifold: Visual Insights
 
-In the digital frontier, clarity is paramount. Dracpurp provides a cognitive interface that minimizes ocular fatigue while maximizing structural focus. Observe the manifestation of the theme across its primary variants, as rendered through the lens of a deterministic battle between high-entropy entities:
+In the digital frontier, clarity is paramount. Dracpurp provides a cognitive interface that minimizes ocular fatigue while maximizing structural focus. Observe the manifestation of the theme across its primary variants:
 
 ### Dracpurp (The Singularity)
 Our flagship manifestation. A perfect equilibrium of deep shadow and neon highlights.
@@ -23,6 +23,21 @@ Unwavering structural integrity. Code as rigid as the laws of physics.
 
 [![No Italic](./screenshot-dracpurp-no-italic.png)](./screenshot-dracpurp-no-italic.png)
 
+### Dracpurp Mocha (The Abyssal Original)
+Mocha — Our darkest variant offering a cozy feeling with color-rich accents.
+
+[![Dracpurp Mocha](./screenshot-mocha.png)](./screenshot-mocha.png)
+
+### Dracpurp Macchiato (The Gentle Shadow)
+Medium contrast with gentle colors creating a soothing atmosphere.
+
+[![Dracpurp Macchiato](./screenshot-macchiato.png)](./screenshot-macchiato.png)
+
+### Dracpurp Frappé (The Muted Cyberpunk)
+A less vibrant alternative using subdued colors for a muted aesthetic.
+
+[![Dracpurp Frappé](./screenshot-frappe.png)](./screenshot-frappe.png)
+
 ## The Emergence of Dracpurp
 
 Welcome to **Dracpurp**. This isn't just another theme; it's a phase-shift in the aesthetic topology of your development environment. Heavily inspired by the structural elegance of the **Dracula Theme** and the darker refinements of the **Om Theme**, Dracpurp pushes these foundations through a singularity of deep purples and cyberpunk highlights.
@@ -31,11 +46,16 @@ Imagine a world where the background isn't just dark, but an **Abyssal Substrate
 
 ## Variants: Choose Your Reality
 
-Dracpurp comes in three distinct flavors, because we know the mind functions best when the aesthetic matches its current internal state:
+Dracpurp comes in several distinct flavors, because we know the mind functions best when the aesthetic matches its current internal state:
 
 1.  **Dracpurp (The Singularity):** The core experience. Clean, sharp, and focused.
-2.  **Dracpurp (Night Owl Italic):** For the dreamers and the midnight architects. A subtle, elegant use of italics to guide your semantic flow.
-3.  **Dracpurp (No Italic):** Pure structural integrity. For those who prefer their code as rigid and unwavering as a blockchain ledger.
+2.  **Dracpurp Mocha:** The original Catppuccin palette, re-imagined on the Dracpurp substrate. Dark, cozy, and color-rich.
+3.  **Dracpurp Macchiato:** A soothing, medium-contrast variant for long-form coding sessions.
+4.  **Dracpurp Frappé:** A subdued, muted aesthetic for the low-vibrancy minimalist.
+5.  **Night Owl Italic:** For the midnight architects. A subtle, elegant use of italics to guide your semantic flow.
+6.  **No Italic:** Pure structural integrity. For those who prefer their code as rigid and unwavering.
+
+Each flavor also includes **High Contrast** and **Eggshell** variants for specific accessibility and aesthetic needs.
 
 ## Installation: Seamless Integration
 
