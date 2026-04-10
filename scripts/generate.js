@@ -11,8 +11,8 @@ const withAlphaType = new Type('!alpha', {
 
 const schema = Schema.create([withAlphaType])
 
-async function generateFlavor(filename) {
-  const yamlFile = await readFile(join(__dirname, '..', 'src', filename), 'utf-8')
+module.exports = async () => {
+  const yamlFile = await readFile(join(__dirname, '..', 'src', 'dracpurp.yml'), 'utf-8')
 
   /** @type {Theme} */
   const base = load(yamlFile, { schema })
@@ -28,14 +28,10 @@ async function generateFlavor(filename) {
   const baseClone2 = _.cloneDeep(base)
   const baseClone3 = _.cloneDeep(base)
 
-  const nightOwlItalic = {
-    ...baseClone3,
-    name: `${baseClone3.name} (Night Owl Italic)`
-  }
-
+  const nightOwlItalic = baseClone3
   const noItalic = {
     ...baseClone2,
-    name: `${baseClone2.name} (No Italic)`,
+    name: 'Dracpurp (No Italic)',
     tokenColors: baseClone2.tokenColors.map((obj) => {
       const newObj = _.cloneDeep(obj)
       if (newObj?.settings?.fontStyle) {
@@ -47,7 +43,7 @@ async function generateFlavor(filename) {
 
   const newBase = {
     ...baseClone1,
-    name: baseClone1.name,
+    name: 'Dracpurp',
     tokenColors: baseClone1.tokenColors.filter((obj) => {
       return !obj?.name?.startsWith('OM_SETTING')
     }),
@@ -55,21 +51,7 @@ async function generateFlavor(filename) {
 
   return {
     base: newBase,
-    nightOwlItalic,
+    nightOwlItalic: { ...nightOwlItalic, name: 'Dracpurp (Night Owl Italic)' },
     noItalic,
-  }
-}
-
-module.exports = async () => {
-  const dracpurp = await generateFlavor('dracpurp.yml')
-  const mocha = await generateFlavor('mocha.yml')
-  const macchiato = await generateFlavor('macchiato.yml')
-  const frappe = await generateFlavor('frappe.yml')
-
-  return {
-    dracpurp,
-    mocha,
-    macchiato,
-    frappe
   }
 }

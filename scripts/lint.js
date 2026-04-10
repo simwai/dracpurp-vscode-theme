@@ -38,9 +38,7 @@ async function scrapeThemeAvailableKeys() {
 
 ;(async () => {
   const availableKeys = await scrapeThemeAvailableKeys()
-  const flavors = await generate()
-  // Use Dracpurp base for checking available keys
-  const base = flavors.dracpurp.base
+  const { base } = await generate()
 
   for (const key of Object.keys(base.colors)) {
     if (!availableKeys.includes(key)) {

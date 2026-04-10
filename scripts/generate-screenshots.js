@@ -60,13 +60,13 @@ async function generateScreenshots() {
     :root {
       --bg: ${colors['editor.background']};
       --fg: ${colors['editor.foreground']};
-      --title-bg: ${colors['titleBar.activeBackground'] || colors['sideBar.background']};
+      --title-bg: ${colors['titleBar.activeBackground'] || colors['editor.background']};
       --title-fg: ${colors['titleBar.activeForeground'] || colors['editor.foreground']};
-      --activity-bg: ${colors['activityBar.background'] || colors['sideBar.background']};
+      --activity-bg: ${colors['activityBar.background'] || colors['editor.background']};
       --activity-fg: ${colors['activityBar.foreground'] || colors['editor.foreground']};
       --activity-inactive: ${colors['activityBar.inactiveForeground'] || colors['tab.inactiveForeground']};
-      --sidebar-bg: ${colors['sideBar.background']};
-      --sidebar-fg: ${colors['sideBar.foreground']};
+      --sidebar-bg: ${colors['sideBar.background'] || colors['editor.background']};
+      --sidebar-fg: ${colors['sideBar.foreground'] || colors['editor.foreground']};
       --sidebar-border: ${colors['sideBar.border'] || colors['editorGroup.border']};
       --tabs-bg: ${colors['editorGroupHeader.tabsBackground'] || colors['editor.background']};
       --tab-active-bg: ${colors['tab.activeBackground'] || colors['editor.background']};
@@ -74,7 +74,7 @@ async function generateScreenshots() {
       --tab-inactive-bg: ${colors['tab.inactiveBackground'] || colors['editor.background']};
       --tab-inactive-fg: ${colors['tab.inactiveForeground'] || colors['editor.foreground']};
       --tab-border: ${colors['tab.border'] || colors['editorGroup.border']};
-      --status-bg: ${colors['statusBar.background'] || colors['sideBar.background']};
+      --status-bg: ${colors['statusBar.background'] || colors['editor.background']};
       --status-fg: ${colors['statusBar.foreground'] || colors['editor.foreground']};
       --line-number: ${colors['editorLineNumber.foreground'] || colors['tab.inactiveForeground']};
       --line-highlight: ${colors['editor.lineHighlightBackground'] || colors['editor.selectionBackground']};
@@ -110,21 +110,6 @@ async function generateScreenshots() {
       justify-content: center;
       position: relative;
     }
-    .window-controls {
-      position: absolute;
-      left: 15px;
-      display: flex;
-      gap: 8px;
-    }
-    .control {
-      width: 12px;
-      height: 12px;
-      border-radius: 50%;
-    }
-    .close { background-color: #ff5f56; }
-    .minimize { background-color: #ffbd2e; }
-    .maximize { background-color: #27c93f; }
-
     .main-content {
       flex: 1;
       display: flex;
@@ -152,7 +137,7 @@ async function generateScreenshots() {
     }
     .activity-icon.active {
       background-color: var(--activity-fg);
-      border-left: 2px solid ${colors['activityBar.activeBorder'] || colors['tab.activeBorder']};
+      border-left: 2px solid ${colors['activityBar.activeBorder'] || colors['tab.activeBorder'] || colors['editor.foreground']};
     }
     .side-bar {
       width: 260px;
@@ -220,7 +205,7 @@ async function generateScreenshots() {
       left: 0;
       right: 0;
       height: 1px;
-      background-color: ${colors['tab.activeBorder']};
+      background-color: ${colors['tab.activeBorder'] || colors['editor.foreground']};
     }
     .editor-content {
       flex: 1;
@@ -269,7 +254,7 @@ async function generateScreenshots() {
       gap: 15px;
     }
     .status-item-blue {
-      background-color: ${colors['statusBarItem.remoteBackground'] || colors['activityBar.activeBorder']};
+      background-color: ${colors['statusBarItem.remoteBackground'] || colors['activityBar.activeBorder'] || colors['editor.foreground']};
       height: 100%;
       padding: 0 10px;
       display: flex;
@@ -280,18 +265,11 @@ async function generateScreenshots() {
 <body>
   <div class="vscode-window">
     <div class="title-bar">
-      <div class="window-controls">
-        <div class="control close"></div>
-        <div class="control minimize"></div>
-        <div class="control maximize"></div>
-      </div>
       <span>battle-strategy.ts — Dracpurp</span>
     </div>
     <div class="main-content">
       <div class="activity-bar">
         <div class="activity-icon explorer active"></div>
-        <div class="activity-icon" style="mask-image: url('data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'%3E%3Cpath d='M15.5 14h-.79l-.28-.27A6.471 6.471 0 0 0 16 9.5 6.5 6.5 0 1 0 9.5 16c1.61 0 3.09-.59 4.23-1.57l.27.28v.79l5 4.99L20.49 19l-4.99-5zm-6 0C7.01 14 5 11.99 5 9.5S7.01 5 9.5 5 14 7.01 14 9.5 11.99 14 9.5 14z'/%3E%3C/svg%3E')"></div>
-        <div class="activity-icon" style="mask-image: url('data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'%3E%3Cpath d='M18 16.08c-.76 0-1.44.3-1.96.77L8.91 12.7c.05-.23.09-.46.09-.7s-.04-.47-.09-.7l7.05-4.11c.54.5 1.25.81 2.04.81 1.66 0 3-1.34 3-3s-1.34-3-3-3-3 1.34-3 3c0 .24.04.47.09.7L8.04 9.81C7.5 9.31 6.79 9 6 9c-1.66 0-3 1.34-3 3s1.34 3 3 3c.79 0 1.5-.31 2.04-.81l7.12 4.16c-.05.21-.08.43-.08.65 0 1.61 1.31 2.92 2.92 2.92 1.61 0 2.92-1.31 2.92-2.92s-1.31-2.92-2.92-2.92z'/%3E%3C/svg%3E')"></div>
       </div>
       <div class="side-bar">
         <div class="side-bar-header">Explorer</div>
@@ -320,11 +298,8 @@ async function generateScreenshots() {
       <div class="status-left">
         <div class="status-item-blue">WS: Dracpurp</div>
         <span>Main*</span>
-        <span>0 \u24BE 0 \u26A0</span>
       </div>
       <div class="status-right">
-        <span>Spaces: 2</span>
-        <span>UTF-8</span>
         <span>TypeScript</span>
       </div>
     </div>

@@ -7,9 +7,9 @@ semanticClass: theme.dracpurp-mocha
 semanticHighlighting: false
 dracula:
   base:
-    - &BG '#1e1e2e'
+    - &BG '#08070b'
     - &FG '#cdd6f4'
-    - &SELECTION '#31324496'
+    - &SELECTION '#20163096'
     - &COMMENT '#6c7086'
     # Syntax
     - &CYAN '#89dceb'
@@ -28,20 +28,23 @@ dracula:
     - &PINK_DARK '#ab87a1'
     - &FLAMINGO_DARK '#ab87a1'
     # UI Component Anchors
+    - &ROSEWATER '#f5e0dc'
+    - &SUBTEXT1 '#bac2de'
+    - &SUBTEXT0 '#a6adc8'
     - &OVERLAY2 '#9399b2'
     - &OVERLAY1 '#7f849c'
     - &OVERLAY0 '#6c7086'
-    - &SURFACE2 '#585b70'
-    - &SURFACE1 '#45475a'
-    - &SURFACE0 '#313244'
-    - &MANTLE '#181825'
-    - &CRUST '#11111b'
-    - &BORDER '#45475a'
+    - &SURFACE2 '#201630'
+    - &SURFACE1 '#201630'
+    - &SURFACE0 '#100a1a'
+    - &MANTLE '#060508'
+    - &CRUST '#040305'
+    - &BORDER '#201630'
     - &ACCENT '#cba6f7'
     - &ACCENT_BRIGHT '#b4befe'
-    - &MATCH_HIGHLIGHT '#585b70'
-    - &SELECTION_BG '#31324496'
-    - &LINE_HIGHLIGHT_BG '#31324480'
+    - &MATCH_HIGHLIGHT '#201630'
+    - &SELECTION_BG '#20163096'
+    - &LINE_HIGHLIGHT_BG '#20163080'
     - &ERROR '#f38ba8'
     - &WARNING '#fab387'
     - &SUCCESS '#a6e3a1'
@@ -66,14 +69,14 @@ dracula:
     - &TEMP_QUOTES '#AAB063'
     - &TEMP_PROPERTY_QUOTES '#6CB5C4'
   other:
-    - &LineHighlight '#31324480'
-    - &NonText '#31324440'
+    - &LineHighlight '#20163080'
+    - &NonText '#100a1a40'
     - &WHITE '#ffffff'
-    - &TAB_DROP_BG '#31324460'
-    - &BGLighter '#181825'
-    - &BGLight '#181825'
-    - &BGDark '#1e1e2e'
-    - &BGDarker '#11111b'
+    - &TAB_DROP_BG '#100a1a60'
+    - &BGLighter '#100a1a'
+    - &BGLight '#060508'
+    - &BGDark '#08070b'
+    - &BGDarker '#040305'
 colors:
   editor.background: *BG
   editor.selectionBackground: *SELECTION_BG
@@ -209,9 +212,9 @@ colors:
   list.filterMatchBackground: *MATCH_HIGHLIGHT
   list.filterMatchBorder: *ACCENT_BRIGHT
   list.deemphasizedForeground: *OVERLAY2
-  list.errorForeground: *ERROR
+  list.errorForeground: '#ff6b6b'
   list.warningForeground: *WARNING
-  list.invalidItemForeground: *ERROR
+  list.invalidItemForeground: '#ff6b6b'
   quickInput.background: *BGLighter
   quickInput.foreground: *PEACH
   quickInputList.focusBackground: *LINE_HIGHLIGHT_BG
@@ -330,7 +333,7 @@ colors:
   notifications.foreground: *PEACH
   notifications.border: *BORDER
   notificationLink.foreground: *ACCENT_BRIGHT
-  notificationsErrorIcon.foreground: *ERROR
+  notificationsErrorIcon.foreground: '#ff6b6b'
   notificationsWarningIcon.foreground: *WARNING
   notificationsInfoIcon.foreground: *ACCENT_BRIGHT
   extensionButton.prominentBackground: *ACCENT
@@ -380,7 +383,7 @@ colors:
   disabledForeground: *COMMENT
   selection.background: '#2d0744'
   descriptionForeground: *OVERLAY2
-  errorForeground: *ERROR
+  errorForeground: '#ff6b6b'
   icon.foreground: *PEACH
   sash.hoverBorder: *ACCENT
   focusBorder: *ACCENT

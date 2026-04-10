@@ -1,5 +1,5 @@
 $schema: vscode://schemas/color-theme
-name: Dracpurp Frappe
+name: Dracpurp Frappé
 author: simwai
 maintainers:
   - simwai
@@ -7,9 +7,9 @@ semanticClass: theme.dracpurp-frappe
 semanticHighlighting: false
 dracula:
   base:
-    - &BG '#303446'
+    - &BG '#08070b'
     - &FG '#c6d0f5'
-    - &SELECTION '#41455996'
+    - &SELECTION '#20163096'
     - &COMMENT '#737994'
     # Syntax
     - &CYAN '#99d1db'
@@ -28,20 +28,23 @@ dracula:
     - &PINK_DARK '#aa809f'
     - &FLAMINGO_DARK '#aa809f'
     # UI Component Anchors
+    - &ROSEWATER '#f2d5cf'
+    - &SUBTEXT1 '#b5bfe2'
+    - &SUBTEXT0 '#a5adce'
     - &OVERLAY2 '#949cbb'
     - &OVERLAY1 '#838ba7'
     - &OVERLAY0 '#737994'
-    - &SURFACE2 '#626880'
-    - &SURFACE1 '#51576d'
-    - &SURFACE0 '#414559'
-    - &MANTLE '#292c3c'
-    - &CRUST '#232634'
-    - &BORDER '#51576d'
+    - &SURFACE2 '#201630'
+    - &SURFACE1 '#201630'
+    - &SURFACE0 '#100a1a'
+    - &MANTLE '#060508'
+    - &CRUST '#040305'
+    - &BORDER '#201630'
     - &ACCENT '#ca9ee6'
     - &ACCENT_BRIGHT '#babbf1'
-    - &MATCH_HIGHLIGHT '#626880'
-    - &SELECTION_BG '#41455996'
-    - &LINE_HIGHLIGHT_BG '#41455980'
+    - &MATCH_HIGHLIGHT '#201630'
+    - &SELECTION_BG '#20163096'
+    - &LINE_HIGHLIGHT_BG '#20163080'
     - &ERROR '#e78284'
     - &WARNING '#ef9f76'
     - &SUCCESS '#a6d189'
@@ -66,14 +69,14 @@ dracula:
     - &TEMP_QUOTES '#AAB063'
     - &TEMP_PROPERTY_QUOTES '#6CB5C4'
   other:
-    - &LineHighlight '#41455980'
-    - &NonText '#41455940'
+    - &LineHighlight '#20163080'
+    - &NonText '#100a1a40'
     - &WHITE '#ffffff'
-    - &TAB_DROP_BG '#41455960'
-    - &BGLighter '#292c3c'
-    - &BGLight '#292c3c'
-    - &BGDark '#303446'
-    - &BGDarker '#232634'
+    - &TAB_DROP_BG '#100a1a60'
+    - &BGLighter '#100a1a'
+    - &BGLight '#060508'
+    - &BGDark '#08070b'
+    - &BGDarker '#040305'
 colors:
   editor.background: *BG
   editor.selectionBackground: *SELECTION_BG
@@ -209,9 +212,9 @@ colors:
   list.filterMatchBackground: *MATCH_HIGHLIGHT
   list.filterMatchBorder: *ACCENT_BRIGHT
   list.deemphasizedForeground: *OVERLAY2
-  list.errorForeground: *ERROR
+  list.errorForeground: '#ff6b6b'
   list.warningForeground: *WARNING
-  list.invalidItemForeground: *ERROR
+  list.invalidItemForeground: '#ff6b6b'
   quickInput.background: *BGLighter
   quickInput.foreground: *PEACH
   quickInputList.focusBackground: *LINE_HIGHLIGHT_BG
@@ -330,7 +333,7 @@ colors:
   notifications.foreground: *PEACH
   notifications.border: *BORDER
   notificationLink.foreground: *ACCENT_BRIGHT
-  notificationsErrorIcon.foreground: *ERROR
+  notificationsErrorIcon.foreground: '#ff6b6b'
   notificationsWarningIcon.foreground: *WARNING
   notificationsInfoIcon.foreground: *ACCENT_BRIGHT
   extensionButton.prominentBackground: *ACCENT
@@ -380,7 +383,7 @@ colors:
   disabledForeground: *COMMENT
   selection.background: '#2d0744'
   descriptionForeground: *OVERLAY2
-  errorForeground: *ERROR
+  errorForeground: '#ff6b6b'
   icon.foreground: *PEACH
   sash.hoverBorder: *ACCENT
   focusBorder: *ACCENT

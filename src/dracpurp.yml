@@ -28,12 +28,15 @@ dracula:
     - &PINK_DARK '#bd5993'
     - &FLAMINGO_DARK '#bd5993'
     # UI Component Anchors
+    - &ROSEWATER '#e8e8e8'
+    - &SUBTEXT1 '#e8e8e8'
+    - &SUBTEXT0 '#e8e8e8'
     - &OVERLAY2 '#8b6b9e'
     - &OVERLAY1 '#8b6b9e'
     - &OVERLAY0 '#8b6b9e'
     - &SURFACE2 '#35094e'
     - &SURFACE1 '#35094e'
-    - &SURFACE0 '#35094e'
+    - &SURFACE0 '#1b0429'
     - &MANTLE '#11021a'
     - &CRUST '#0e0217'
     - &BORDER '#35094e'
@@ -209,9 +212,9 @@ colors:
   list.filterMatchBackground: *MATCH_HIGHLIGHT
   list.filterMatchBorder: *ACCENT_BRIGHT
   list.deemphasizedForeground: *OVERLAY2
-  list.errorForeground: *ERROR
+  list.errorForeground: '#ff6b6b'
   list.warningForeground: *WARNING
-  list.invalidItemForeground: *ERROR
+  list.invalidItemForeground: '#ff6b6b'
   quickInput.background: *BGLighter
   quickInput.foreground: *PEACH
   quickInputList.focusBackground: *LINE_HIGHLIGHT_BG
@@ -330,7 +333,7 @@ colors:
   notifications.foreground: *PEACH
   notifications.border: *BORDER
   notificationLink.foreground: *ACCENT_BRIGHT
-  notificationsErrorIcon.foreground: *ERROR
+  notificationsErrorIcon.foreground: '#ff6b6b'
   notificationsWarningIcon.foreground: *WARNING
   notificationsInfoIcon.foreground: *ACCENT_BRIGHT
   extensionButton.prominentBackground: *ACCENT
@@ -380,7 +383,7 @@ colors:
   disabledForeground: *COMMENT
   selection.background: '#2d0744'
   descriptionForeground: *OVERLAY2
-  errorForeground: *ERROR
+  errorForeground: '#ff6b6b'
   icon.foreground: *PEACH
   sash.hoverBorder: *ACCENT
   focusBorder: *ACCENT
