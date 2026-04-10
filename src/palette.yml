@@ -1,0 +1,26 @@
+# Single Source of Truth for Dracpurp Palette
+base:
+  BG: '#100e12'
+  FG: '#e8e8e8'
+  COMMENT: '#8b6b9e'
+  SELECTION: '#2d074496'
+  CYAN: '#89BBC5'
+  GREEN: '#6AC581'
+  ORANGE: '#D4AD74'
+  PINK: '#F595CC'
+  PURPLE: '#C6A6F3'
+  RED: '#F19D9D'
+  YELLOW: '#B3B780'
+
+hc_boost:
+  BG: '#000000'
+  CYAN: '#A5CBD3'
+  GREEN: '#92D5A3'
+  ORANGE: '#DFC197'
+  PINK: '#F7B1DA'
+  PURPLE: '#D5BDF6'
+  RED: '#F5B7B7'
+  YELLOW: '#C4C79D'
+
+eggshell:
+  VARIABLE: '#F0EAD6'
