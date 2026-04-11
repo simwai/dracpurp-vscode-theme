@@ -54,7 +54,7 @@ module.exports = async () => {
 
   const results = {}
 
-  function transform(theme, nameSuffix, bg, useEggshell, isHC) {
+  function transform(theme, nameSuffix, bg, useEggshell, isHC, skipBoost = false) {
     const t = _.cloneDeep(theme)
     t.name = `${theme.name}${nameSuffix}`
 
@@ -85,7 +85,7 @@ module.exports = async () => {
             : (typeof newTc.scope === 'string' && variableScopes.some(vs => newTc.scope.startsWith(vs)))
 
         // Handle HC Color Boost
-        if (isHC) {
+        if (isHC && !skipBoost) {
           for (const [name, hex] of Object.entries(baseColors)) {
               if (currentFg === hex.toUpperCase() && hcBoost[name]) {
                   newTc.settings.foreground = hcBoost[name]
@@ -95,11 +95,11 @@ module.exports = async () => {
         }
 
         // Handle Eggshell Variables
-        if (useEggshell && (isVariableToken || newTc.settings.foreground === baseColors.ORANGE || (isHC && newTc.settings.foreground === hcBoost.ORANGE))) {
-           // Double check current value to avoid overwriting unrelated tokens that happen to be orange (if any)
-           // But here the user wants "variable names" to be eggshell.
+        if (useEggshell) {
            const finalFg = newTc.settings.foreground?.toUpperCase()
-           if (finalFg === baseColors.ORANGE.toUpperCase() || (isHC && finalFg === hcBoost.ORANGE.toUpperCase())) {
+           const isOrange = finalFg === baseColors.ORANGE.toUpperCase() || (isHC && !skipBoost && finalFg === hcBoost.ORANGE.toUpperCase())
+
+           if (isVariableToken || isOrange) {
                 newTc.settings.foreground = eggshellVal
            }
         }
@@ -149,7 +149,8 @@ module.exports = async () => {
 
   Object.entries(draculaVariants).forEach(([key, bt]) => {
     results[key] = bt
-    results[`${key}HC`] = transform(bt, ' High Contrast', '#000000', false, true)
+    // Original HC uses black BG but skips color boost
+    results[`${key}HC`] = transform(bt, ' High Contrast', '#000000', false, true, true)
     results[`${key}Eggshell`] = transform(bt, ' Eggshell', null, true, false)
   })
 
