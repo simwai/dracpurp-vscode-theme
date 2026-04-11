@@ -43,13 +43,12 @@ module.exports = async () => {
     }
 
     if (t.tokenColors) {
+      // Narrow scopes to target actual variable names, not properties or language keywords
       const variableScopes = [
           'variable',
           'variable.parameter',
           'entity.name.variable.parameter',
-          'variable.other.readwrite',
-          'variable.other.object',
-          'variable.other.property'
+          'variable.other.readwrite'
       ]
 
       t.tokenColors = t.tokenColors.map(tc => {
@@ -58,8 +57,8 @@ module.exports = async () => {
         const currentFg = newTc.settings.foreground?.toUpperCase()
 
         const isVariableToken = Array.isArray(newTc.scope)
-            ? newTc.scope.some(s => variableScopes.some(vs => s.startsWith(vs)))
-            : (typeof newTc.scope === 'string' && variableScopes.some(vs => newTc.scope.startsWith(vs)))
+            ? newTc.scope.some(s => variableScopes.some(vs => s === vs || s.startsWith(vs + '.')))
+            : (typeof newTc.scope === 'string' && variableScopes.some(vs => newTc.scope === vs || newTc.scope.startsWith(vs + '.')))
 
         // Handle HC Color Boost (Optimized only)
         if (isHC && !skipBoost) {
@@ -71,32 +70,21 @@ module.exports = async () => {
           }
         }
 
-        // Handle Eggshell Variables
+        // Handle Eggshell Variables: Target ORANGE (Rajah/Dracula Orange) that are also variables
         if (useEggshell) {
            const finalFg = newTc.settings.foreground?.toUpperCase()
-           const isOrange = finalFg === lineageColors.ORANGE.toUpperCase() || (isHC && !skipBoost && finalFg === palette.hc_boost.ORANGE.toUpperCase())
+           const orangeTarget = skipBoost ? palette.dracula.ORANGE.toUpperCase() : palette.optimized.ORANGE.toUpperCase()
+           const hcOrangeTarget = palette.hc_boost.ORANGE.toUpperCase()
 
-           if (isVariableToken || isOrange) {
+           const isOrange = finalFg === orangeTarget || (isHC && !skipBoost && finalFg === hcOrangeTarget)
+
+           if (isVariableToken && isOrange) {
                 newTc.settings.foreground = eggshellVal
            }
         }
 
         return newTc
       })
-
-      if (useEggshell) {
-          t.tokenColors.push({
-              name: "C# Variables",
-              scope: [
-                  "variable.other.readwrite.cs",
-                  "variable.other.object.cs",
-                  "variable.other.property.cs"
-              ],
-              settings: {
-                  foreground: eggshellVal
-              }
-          })
-      }
     }
     return t
   }
