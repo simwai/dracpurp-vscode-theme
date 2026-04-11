@@ -1,5 +1,21 @@
 # Single Source of Truth for Dracpurp Palette
-base:
+
+# Ancestral Dracula Palette (Native Contrast ~7-8)
+dracula:
+  BG: '#100e12'
+  FG: '#e8e8e8'
+  COMMENT: '#8b6b9e'
+  SELECTION: '#2d074496'
+  CYAN: '#8BE9FD'
+  GREEN: '#50FA7B'
+  ORANGE: '#FFB86C'
+  PINK: '#FF79C6'
+  PURPLE: '#BD93F9'
+  RED: '#FF5555'
+  YELLOW: '#F1FA8C'
+
+# Optimized Palette (Target Contrast 10.0 Standard / 12.0 HC)
+optimized:
   BG: '#100e12'
   FG: '#e8e8e8'
   COMMENT: '#8b6b9e'
@@ -12,6 +28,7 @@ base:
   RED: '#FBA4A4'
   YELLOW: '#BCC086'
 
+# High Contrast Boost for Optimized Lineage (Target Contrast 12.0)
 hc_boost:
   BG: '#000000'
   CYAN: '#84CCFF'

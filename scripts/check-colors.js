@@ -6,56 +6,34 @@ const yaml = require('js-yaml')
 const paletteFile = fs.readFileSync(path.join(__dirname, '..', 'src', 'palette.yml'), 'utf-8')
 const palette = yaml.load(paletteFile)
 
-const baseColors = palette.base
-const hcBoost = palette.hc_boost
-const eggshellVariable = palette.eggshell.VARIABLE
-const bgBase = baseColors.BG
-const bgHC = '#000000'
-
 const primaries = ['CYAN', 'GREEN', 'ORANGE', 'PINK', 'PURPLE', 'RED', 'YELLOW']
+
+let hasError = false
+
+function checkLineage(name, colors, targetContrast, bg) {
+    console.log(`\nChecking ${name} Lineage (Target: ${targetContrast})`)
+    for (const colorName of primaries) {
+        const hex = colors[colorName]
+        const contrast = tinycolor.readability(bg, hex)
+        console.log(`  ${colorName.padEnd(10)}: ${hex} | Contrast: ${contrast.toFixed(2)}`)
+        if (contrast < targetContrast - 0.1) {
+            console.error(`  Error: ${colorName} contrast is too low!`)
+            hasError = true
+        }
+    }
+}
 
 console.log('Checking Color Manifold Consistency...')
 console.log('---------------------------------------')
 
-let hasError = false
+// Check Optimized Standard
+checkLineage('Optimized Standard', palette.optimized, 10.0, palette.optimized.BG)
 
-// Check Base Colors
-console.log('\nBase Palette (Target Contrast: 10.0)')
-for (const name of primaries) {
-    const hex = baseColors[name]
-    const contrast = tinycolor.readability(bgBase, hex)
-    console.log(`${name.padEnd(10)}: ${hex} | Contrast: ${contrast.toFixed(2)}`)
-    if (contrast < 9.9) { // Allow slight rounding
-        console.error(`Error: ${name} base contrast is too low!`)
-        hasError = true
-    }
-}
+// Check Optimized HC
+checkLineage('Optimized High Contrast', palette.hc_boost, 12.0, palette.hc_boost.BG)
 
-// Check HC Boost Colors
-console.log('\nHC Boost Palette (Target Contrast: 12.0)')
-for (const name of primaries) {
-    const hex = hcBoost[name]
-    const contrast = tinycolor.readability(bgHC, hex)
-    console.log(`${name.padEnd(10)}: ${hex} | Contrast: ${contrast.toFixed(2)}`)
-    if (contrast < 11.9) {
-        console.error(`Error: ${name} HC contrast is too low!`)
-        hasError = true
-    }
-}
-
-// Check Luminance Consistency (Base only)
-const luminances = primaries.map(name => tinycolor(baseColors[name]).getLuminance())
-const avgLum = luminances.reduce((a, b) => a + b, 0) / luminances.length
-console.log(`\nAverage Primary Luminance: ${avgLum.toFixed(3)}`)
-
-const TOLERANCE = 0.15 // Slightly increased tolerance for high contrast requirements
-for (const name of primaries) {
-    const lum = tinycolor(baseColors[name]).getLuminance()
-    const diff = Math.abs(lum - avgLum)
-    if (diff > TOLERANCE) {
-        console.warn(`Warning: ${name} luminance (${lum.toFixed(3)}) deviates from average (${avgLum.toFixed(3)})`)
-    }
-}
+// Check Original (Native)
+checkLineage('Original Dracula', palette.dracula, 6.0, palette.dracula.BG)
 
 if (hasError) {
   process.exit(1)
