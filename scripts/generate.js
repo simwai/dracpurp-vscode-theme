@@ -17,7 +17,6 @@ module.exports = async () => {
   const paletteFile = await readFile(join(__dirname, '..', 'src', 'palette.yml'), 'utf-8')
 
   const palette = load(paletteFile)
-  const eggshellVal = palette.eggshell.VARIABLE
 
   /** @type {Theme} */
   const rawOptimized = load(dracpurpYamlFile, { schema })
@@ -34,105 +33,96 @@ module.exports = async () => {
 
   const results = {}
 
-  function transform(theme, nameSuffix, bg, useEggshell, isHC, lineageColors, skipBoost = false) {
+  function transform(theme, nameSuffix, backgrounds, isItalic) {
     const t = _.cloneDeep(theme)
     t.name = `${theme.name}${nameSuffix}`
 
-    if (bg) {
-      t.colors['editor.background'] = bg
+    // Apply Tiered Backgrounds
+    if (backgrounds) {
+      t.colors['editor.background'] = backgrounds.BG
+      t.colors['sideBar.background'] = backgrounds.BG_SIDEBAR
+      t.colors['activityBar.background'] = backgrounds.BG_TITLE
+      t.colors['titleBar.activeBackground'] = backgrounds.BG_TITLE
+      t.colors['panel.background'] = backgrounds.BG_SIDEBAR
     }
 
-    if (t.tokenColors) {
-      // Narrow scopes to target actual variable names, not properties or language keywords
-      const variableScopes = [
-          'variable',
-          'variable.parameter',
-          'entity.name.variable.parameter',
-          'variable.other.readwrite'
-      ]
+    if (isItalic) {
+        // Apply Italic Flow to Keywords, Parameters, and Comments
+        const italicScopes = ['keyword', 'parameter', 'comment']
 
-      t.tokenColors = t.tokenColors.map(tc => {
-        if (!tc.settings) return tc
-        const newTc = _.cloneDeep(tc)
-        const currentFg = newTc.settings.foreground?.toUpperCase()
-
-        const isVariableToken = Array.isArray(newTc.scope)
-            ? newTc.scope.some(s => variableScopes.some(vs => s === vs || s.startsWith(vs + '.')))
-            : (typeof newTc.scope === 'string' && variableScopes.some(vs => newTc.scope === vs || newTc.scope.startsWith(vs + '.')))
-
-        // Handle HC Color Boost (Optimized only)
-        if (isHC && !skipBoost) {
-          for (const [name, hex] of Object.entries(lineageColors)) {
-              if (currentFg === hex.toUpperCase() && palette.hc_boost[name]) {
-                  newTc.settings.foreground = palette.hc_boost[name]
-                  break
-              }
-          }
+        // Semantic Token Mapping
+        if (t.semanticTokenColors) {
+            for (const key of Object.keys(t.semanticTokenColors)) {
+                if (italicScopes.some(s => key.includes(s))) {
+                    if (typeof t.semanticTokenColors[key] === 'string') {
+                        t.semanticTokenColors[key] = {
+                            foreground: t.semanticTokenColors[key],
+                            fontStyle: 'italic'
+                        }
+                    } else {
+                        t.semanticTokenColors[key].fontStyle = 'italic'
+                    }
+                }
+            }
         }
 
-        // Handle Eggshell Variables: Target ORANGE (Rajah/Dracula Orange) that are also variables
-        if (useEggshell) {
-           const finalFg = newTc.settings.foreground?.toUpperCase()
-           const orangeTarget = skipBoost ? palette.dracula.ORANGE.toUpperCase() : palette.optimized.ORANGE.toUpperCase()
-           const hcOrangeTarget = palette.hc_boost.ORANGE.toUpperCase()
-
-           const isOrange = finalFg === orangeTarget || (isHC && !skipBoost && finalFg === hcOrangeTarget)
-
-           if (isVariableToken && isOrange) {
-                newTc.settings.foreground = eggshellVal
-           }
-        }
-
-        return newTc
-      })
+        // TextMate Mapping
+        t.tokenColors = t.tokenColors.map(tc => {
+            const scope = Array.isArray(tc.scope) ? tc.scope.join(' ') : (tc.scope || '')
+            if (italicScopes.some(s => scope.includes(s))) {
+                return {
+                    ...tc,
+                    settings: { ...tc.settings, fontStyle: 'italic' }
+                }
+            }
+            return tc
+        })
     }
+
     return t
   }
 
   // Optimized Lineage
-  const baseOptimized = {
-    ...cleanTheme(rawOptimized),
-    name: 'Dracpurp',
-    tokenColors: rawOptimized.tokenColors.filter(obj => !obj?.name?.startsWith('OM_SETTING'))
+  const baseOptimized = cleanTheme(rawOptimized)
+  baseOptimized.semanticTokenColors = {
+      "variable": palette.optimized.WORKHORSE,
+      "property": palette.optimized.WORKHORSE,
+      "string": palette.optimized.WORKHORSE,
+      "number": palette.optimized.WORKHORSE,
+      "regexp": palette.optimized.WORKHORSE,
+      "parameter": palette.optimized.PARAMETER,
+      "method": palette.optimized.FUNCTION,
+      "function": palette.optimized.FUNCTION,
+      "keyword": palette.optimized.KEYWORD,
+      "class": palette.optimized.PURPLE,
+      "interface": palette.optimized.PURPLE,
+      "namespace": palette.optimized.PURPLE,
+      "type": palette.optimized.CYAN,
+      "enum": palette.optimized.CYAN,
+      "struct": palette.optimized.CYAN,
+      "typeParameter": palette.optimized.CYAN,
+      "comment": palette.optimized.COMMENT
   }
 
-  const optimizedVariants = {
-      'base': baseOptimized,
-      'nightOwlItalic': { ...baseOptimized, name: 'Dracpurp (Night Owl Italic)', tokenColors: rawOptimized.tokenColors },
-      'noItalic': {
-          ...baseOptimized,
-          name: 'Dracpurp (No Italic)',
-          tokenColors: rawOptimized.tokenColors.map(obj => {
-              const newObj = _.cloneDeep(obj)
-              if (newObj?.settings?.fontStyle) {
-                  newObj.settings.fontStyle = newObj.settings.fontStyle.replace('italic', '').trim()
-              }
-              return newObj
-          })
-      }
+  const optBG = {
+      BG: palette.optimized.BG,
+      BG_SIDEBAR: palette.optimized.BG_SIDEBAR,
+      BG_TITLE: palette.optimized.BG_TITLE
+  }
+  const optBGHC = {
+      BG: palette.hc_optimized.BG,
+      BG_SIDEBAR: palette.hc_optimized.BG_SIDEBAR,
+      BG_TITLE: palette.hc_optimized.BG_TITLE
   }
 
-  Object.entries(optimizedVariants).forEach(([key, bt]) => {
-      results[key] = bt
-      results[`${key}HC`] = transform(bt, ' High Contrast', '#000000', false, true, palette.optimized)
-      results[`${key}Eggshell`] = transform(bt, ' Eggshell', null, true, false, palette.optimized)
-  })
+  results['base'] = transform(baseOptimized, '', optBG, false)
+  results['nightOwlItalic'] = transform(baseOptimized, ' (Night Owl Italic)', optBG, true)
+  results['baseHC'] = transform(baseOptimized, ' High Contrast', optBGHC, false)
+  results['nightOwlItalicHC'] = transform(baseOptimized, ' High Contrast Italic', optBGHC, true)
 
-  // Original Lineage
-  const baseOriginal = {
-      ...cleanTheme(rawOriginal),
-      name: 'Dracpurp Original'
-  }
-
-  const draculaVariants = {
-    'dracula': baseOriginal
-  }
-
-  Object.entries(draculaVariants).forEach(([key, bt]) => {
-    results[key] = bt
-    results[`${key}HC`] = transform(bt, ' High Contrast', '#000000', false, true, palette.dracula, true)
-    results[`${key}Eggshell`] = transform(bt, ' Eggshell', null, true, false, palette.dracula)
-  })
+  // Original Lineage (Simplified)
+  const baseOriginal = cleanTheme(rawOriginal)
+  baseOriginal.name = 'Dracpurp Original'; results['dracula'] = baseOriginal
 
   return results
 }
