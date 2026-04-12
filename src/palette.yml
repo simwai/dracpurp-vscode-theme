@@ -1,44 +1,26 @@
 # Single Source of Truth for Dracpurp Palette
-
-# Ancestral Dracula Palette (Native Contrast ~7-8)
-dracula:
+base:
   BG: '#100e12'
   FG: '#e8e8e8'
   COMMENT: '#8b6b9e'
   SELECTION: '#2d074496'
-  CYAN: '#8BE9FD'
-  GREEN: '#50FA7B'
-  ORANGE: '#FFB86C'
-  PINK: '#FF79C6'
-  PURPLE: '#BD93F9'
-  RED: '#FF5555'
-  YELLOW: '#F1FA8C'
+  CYAN: '#89BBC5'
+  GREEN: '#6AC581'
+  ORANGE: '#D4AD74'
+  PINK: '#F595CC'
+  PURPLE: '#C6A6F3'
+  RED: '#F19D9D'
+  YELLOW: '#B3B780'
 
-# Optimized Palette: Refined Semantic Manifold
-optimized:
-  BG: '#100e12'
-  FG: '#e8e8e8'
-  COMMENT: '#817B93'
-  SELECTION: '#2d074496'
-  # Color Groups
-  WORKHORSE: '#CEC8B9' # Variables, Properties, Strings, Numbers, Regexp
-  PARAMETER: '#DEAC77'
-  FUNCTION: '#A1D3A9'
-  KEYWORD: '#F272BE'
-  CLASS: '#B2A1E5'
-  TYPE: '#A8B4C3'
-  # Fallback Anchors
-  CYAN: '#A8B4C3'
-  GREEN: '#A1D3A9'
-  ORANGE: '#DEAC77'
-  PINK: '#F272BE'
-  PURPLE: '#B2A1E5'
-  RED: '#FF5555'
-  YELLOW: '#CEC8B9'
-
-# No algorithmic boost; HC variant uses pure black substrate
 hc_boost:
   BG: '#000000'
+  CYAN: '#A5CBD3'
+  GREEN: '#92D5A3'
+  ORANGE: '#DFC197'
+  PINK: '#F7B1DA'
+  PURPLE: '#D5BDF6'
+  RED: '#F5B7B7'
+  YELLOW: '#C4C79D'
 
 eggshell:
   VARIABLE: '#F0EAD6'
