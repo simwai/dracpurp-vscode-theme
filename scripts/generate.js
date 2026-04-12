@@ -17,6 +17,7 @@ module.exports = async () => {
   const paletteFile = await readFile(join(__dirname, '..', 'src', 'palette.yml'), 'utf-8')
 
   const palette = load(paletteFile)
+  const eggshellVal = palette.eggshell.VARIABLE
 
   /** @type {Theme} */
   const rawOptimized = load(dracpurpYamlFile, { schema })
@@ -33,52 +34,58 @@ module.exports = async () => {
 
   const results = {}
 
-  function transform(theme, nameSuffix, backgrounds, isItalic) {
+  function transform(theme, nameSuffix, bg, useEggshell, isHC, lineageColors, skipBoost = false) {
     const t = _.cloneDeep(theme)
     t.name = `${theme.name}${nameSuffix}`
 
-    // Apply Tiered Backgrounds
-    if (backgrounds) {
-      t.colors['editor.background'] = backgrounds.BG
-      t.colors['sideBar.background'] = backgrounds.BG_SIDEBAR
-      t.colors['activityBar.background'] = backgrounds.BG_TITLE
-      t.colors['titleBar.activeBackground'] = backgrounds.BG_TITLE
-      t.colors['panel.background'] = backgrounds.BG_SIDEBAR
+    if (bg) {
+      t.colors['editor.background'] = bg
     }
 
-    if (isItalic) {
-        // Apply Italic Flow to Keywords, Parameters, and Comments
-        const italicScopes = ['keyword', 'parameter', 'comment']
+    if (t.tokenColors) {
+      const italicScopes = ['keyword', 'parameter', 'comment']
 
-        // Semantic Token Mapping
-        if (t.semanticTokenColors) {
-            for (const key of Object.keys(t.semanticTokenColors)) {
-                if (italicScopes.some(s => key.includes(s))) {
-                    if (typeof t.semanticTokenColors[key] === 'string') {
-                        t.semanticTokenColors[key] = {
-                            foreground: t.semanticTokenColors[key],
-                            fontStyle: 'italic'
-                        }
-                    } else {
-                        t.semanticTokenColors[key].fontStyle = 'italic'
-                    }
-                }
+      t.tokenColors = t.tokenColors.map(tc => {
+        if (!tc.settings) return tc
+        const newTc = _.cloneDeep(tc)
+
+        // Handle Italics for specified variants
+        if (nameSuffix.includes('Italic')) {
+            const scope = Array.isArray(newTc.scope) ? newTc.scope.join(' ') : (newTc.scope || '')
+            if (italicScopes.some(s => scope.includes(s))) {
+                newTc.settings.fontStyle = 'italic'
             }
         }
 
-        // TextMate Mapping
-        t.tokenColors = t.tokenColors.map(tc => {
-            const scope = Array.isArray(tc.scope) ? tc.scope.join(' ') : (tc.scope || '')
-            if (italicScopes.some(s => scope.includes(s))) {
-                return {
-                    ...tc,
-                    settings: { ...tc.settings, fontStyle: 'italic' }
-                }
-            }
-            return tc
-        })
-    }
+        // Handle Eggshell Variables
+        if (useEggshell) {
+           const variableScopes = ['variable', 'variable.parameter', 'entity.name.variable.parameter', 'variable.other.readwrite']
+           const scope = Array.isArray(newTc.scope) ? newTc.scope.join(' ') : (newTc.scope || '')
+           const isVariableToken = variableScopes.some(vs => scope.includes(vs))
+           const currentFg = newTc.settings.foreground?.toUpperCase()
+           const orangeTarget = lineageColors.ORANGE.toUpperCase()
 
+           if (isVariableToken && currentFg === orangeTarget) {
+                newTc.settings.foreground = eggshellVal
+           }
+        }
+
+        return newTc
+      })
+
+      // Semantic Italics
+      if (nameSuffix.includes('Italic') && t.semanticTokenColors) {
+          for (const key of Object.keys(t.semanticTokenColors)) {
+              if (italicScopes.some(s => key.includes(s))) {
+                  if (typeof t.semanticTokenColors[key] === 'string') {
+                      t.semanticTokenColors[key] = { foreground: t.semanticTokenColors[key], fontStyle: 'italic' }
+                  } else {
+                      t.semanticTokenColors[key].fontStyle = 'italic'
+                  }
+              }
+          }
+      }
+    }
     return t
   }
 
@@ -104,25 +111,33 @@ module.exports = async () => {
       "comment": palette.optimized.COMMENT
   }
 
-  const optBG = {
-      BG: palette.optimized.BG,
-      BG_SIDEBAR: palette.optimized.BG_SIDEBAR,
-      BG_TITLE: palette.optimized.BG_TITLE
-  }
-  const optBGHC = {
-      BG: palette.hc_optimized.BG,
-      BG_SIDEBAR: palette.hc_optimized.BG_SIDEBAR,
-      BG_TITLE: palette.hc_optimized.BG_TITLE
+  const optVariants = {
+      'base': baseOptimized,
+      'nightOwlItalic': { ...baseOptimized, name: 'Dracpurp (Night Owl Italic)' },
+      'noItalic': {
+          ...baseOptimized,
+          name: 'Dracpurp (No Italic)',
+          tokenColors: baseOptimized.tokenColors.map(obj => {
+              const newObj = _.cloneDeep(obj)
+              if (newObj?.settings?.fontStyle) {
+                  newObj.settings.fontStyle = newObj.settings.fontStyle.replace('italic', '').trim()
+              }
+              return newObj
+          })
+      }
   }
 
-  results['base'] = transform(baseOptimized, '', optBG, false)
-  results['nightOwlItalic'] = transform(baseOptimized, ' (Night Owl Italic)', optBG, true)
-  results['baseHC'] = transform(baseOptimized, ' High Contrast', optBGHC, false)
-  results['nightOwlItalicHC'] = transform(baseOptimized, ' High Contrast Italic', optBGHC, true)
+  Object.entries(optVariants).forEach(([key, bt]) => {
+      results[key] = bt
+      results[`${key}HC`] = transform(bt, ' High Contrast', '#000000', false, true, palette.optimized)
+      results[`${key}Eggshell`] = transform(bt, ' Eggshell', null, true, false, palette.optimized)
+  })
 
-  // Original Lineage (Simplified)
-  const baseOriginal = cleanTheme(rawOriginal)
-  baseOriginal.name = 'Dracpurp Original'; results['dracula'] = baseOriginal
+  // Original Lineage
+  const baseOriginal = { ...cleanTheme(rawOriginal), name: 'Dracpurp Original' }
+  results['dracula'] = baseOriginal
+  results['draculaHC'] = transform(baseOriginal, ' High Contrast', '#000000', false, true, palette.dracula, true)
+  results['draculaEggshell'] = transform(baseOriginal, ' Eggshell', null, true, false, palette.dracula)
 
   return results
 }

@@ -14,22 +14,20 @@ dracula:
   RED: '#FF5555'
   YELLOW: '#F1FA8C'
 
-# Optimized Palette: The "300 IQ Semantic" Manifold
+# Optimized Palette: Refined Semantic Manifold
 optimized:
-  BG: '#282A36'
-  BG_SIDEBAR: '#21222C'
-  BG_TITLE: '#1E1F29'
+  BG: '#100e12'
   FG: '#e8e8e8'
   COMMENT: '#817B93'
-  SELECTION: '#44475A'
-  # Semantic Mapping
+  SELECTION: '#2d074496'
+  # Color Groups
   WORKHORSE: '#CEC8B9' # Variables, Properties, Strings, Numbers, Regexp
   PARAMETER: '#DEAC77'
   FUNCTION: '#A1D3A9'
   KEYWORD: '#F272BE'
   CLASS: '#B2A1E5'
   TYPE: '#A8B4C3'
-  # Fallback Anchors for Templates
+  # Fallback Anchors
   CYAN: '#A8B4C3'
   GREEN: '#A1D3A9'
   ORANGE: '#DEAC77'
@@ -38,11 +36,9 @@ optimized:
   RED: '#FF5555'
   YELLOW: '#CEC8B9'
 
-# High Contrast (Abyssal Glare Combat)
-hc_optimized:
-  BG: '#111115'
-  BG_SIDEBAR: '#0C0C0F'
-  BG_TITLE: '#08080A'
+# No algorithmic boost; HC variant uses pure black substrate
+hc_boost:
+  BG: '#000000'
 
 eggshell:
   VARIABLE: '#F0EAD6'

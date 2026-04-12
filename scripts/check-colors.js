@@ -11,14 +11,13 @@ const primaries = ['CYAN', 'GREEN', 'ORANGE', 'PINK', 'PURPLE', 'RED', 'YELLOW']
 let hasError = false
 
 function checkLineage(name, colors, targetContrast, bg) {
-    console.log(`\nChecking ${name} Lineage (Target Range: ~${targetContrast})`)
+    console.log(`\nChecking ${name} Lineage (Target: ${targetContrast})`)
     for (const colorName of primaries) {
         const hex = colors[colorName]
         const contrast = tinycolor.readability(bg, hex)
         console.log(`  ${colorName.padEnd(10)}: ${hex} | Contrast: ${contrast.toFixed(2)}`)
-        // The new philosophy has a contrast CEILING of 8.5/11.2, so we just log and verify it's above AA (4.5)
-        if (contrast < 4.4) {
-            console.error(`  Error: ${colorName} contrast is too low for accessibility!`)
+        if (contrast < 4.5) {
+            console.error(`  Error: ${colorName} contrast is too low for WCAG AA!`)
             hasError = true
         }
     }
@@ -27,14 +26,8 @@ function checkLineage(name, colors, targetContrast, bg) {
 console.log('Checking Color Manifold Consistency...')
 console.log('---------------------------------------')
 
-// Check Optimized Standard
-checkLineage('Optimized Standard', palette.optimized, 8.5, palette.optimized.BG)
-
-// Check Optimized HC
-checkLineage('Optimized High Contrast (HC)', palette.optimized, 11.2, palette.hc_optimized.BG)
-
-// Check Original (Native)
-checkLineage('Original Dracula', palette.dracula, 6.0, palette.dracula.BG)
+checkLineage('Optimized Standard', palette.optimized, 4.5, palette.optimized.BG)
+checkLineage('Original Dracula', palette.dracula, 4.5, palette.dracula.BG)
 
 if (hasError) {
   process.exit(1)

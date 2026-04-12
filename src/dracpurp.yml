@@ -7,9 +7,9 @@ semanticClass: theme.dracpurp
 semanticHighlighting: true
 dracula:
   base:
-    - &BG '#282A36'
+    - &BG '#100e12'
     - &FG '#e8e8e8'
-    - &SELECTION '#44475A'
+    - &SELECTION '#2d074496'
     - &COMMENT '#817B93'
     - &CYAN '#A8B4C3'
     - &GREEN '#A1D3A9'
@@ -39,53 +39,43 @@ dracula:
     - &TEMP_QUOTES '#AAB063'
     - &TEMP_PROPERTY_QUOTES '#6CB5C4'
   other:
-    - &LineHighlight '#44475A75'
-    - &NonText '#FFFFFF1A'
+    - &LineHighlight '#2d074480'
+    - &NonText '#35094e40'
     - &WHITE '#ffffff'
-    - &TAB_DROP_BG '#44475A70'
+    - &TAB_DROP_BG '#2d074460'
     - &BGLighter '#1b0429'
     - &BGLight '#11021a'
     - &BGDark '#100e12'
     - &BGDarker '#0e0217'
 
 colors:
-  # Base UI colors that will be overridden by tiered backgrounds in generate.js
   editor.background: *BG
   editor.foreground: *FG
-  sideBar.background: *BG
-  activityBar.background: *BG
-  titleBar.activeBackground: *BG
 
 tokenColors:
-  # TextMate Fallback rules (The Workhorse / Eggshell)
-  - name: Variables and Properties
+  - name: Workhorse (Variables, Strings, Numbers)
     scope:
       - variable
       - variable.other.readwrite
       - variable.other.object
       - variable.other.property
       - support.variable.property
-      - entity.name.variable
-    settings:
-      foreground: *YELLOW
-
-  - name: Strings and Numbers
-    scope:
       - string
       - constant.numeric
       - constant.language
       - constant.other
+      - constant.other.key.perl
     settings:
       foreground: *YELLOW
 
-  - name: Functions and Methods
+  - name: Logic (Functions and Methods)
     scope:
       - entity.name.function
       - support.function
     settings:
       foreground: *GREEN
 
-  - name: Keywords
+  - name: Skeleton (Keywords)
     scope:
       - keyword
       - storage.type
@@ -124,3 +114,10 @@ tokenColors:
       - punctuation.definition.comment
     settings:
       foreground: *COMMENT
+
+  - name: CSS / SCSS function calls (Fallback)
+    scope:
+      - support.function
+      - entity.name.function
+    settings:
+      foreground: *GREEN
