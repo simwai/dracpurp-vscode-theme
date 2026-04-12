@@ -34,12 +34,19 @@ module.exports = async () => {
 
   const results = {}
 
-  function transform(theme, nameSuffix, bg, useEggshell, isHC, lineageColors, isItalic = false) {
+  function transform(theme, nameSuffix, bgSet, useEggshell, isHC, lineageColors, isItalic = false) {
     const t = _.cloneDeep(theme)
     t.name = `${theme.name}${nameSuffix}`
 
-    if (bg) {
-      t.colors['editor.background'] = bg
+    if (isHC && bgSet) {
+      t.colors['editor.background'] = bgSet.BG
+      t.colors['sideBar.background'] = bgSet.BG_SIDEBAR
+      t.colors['activityBar.background'] = bgSet.BG_TITLE
+      t.colors['titleBar.activeBackground'] = bgSet.BG_TITLE
+      t.colors['panel.background'] = bgSet.BG_SIDEBAR
+    } else if (isHC) {
+        // Fallback for Original lineage HC if bgSet not provided (legacy behavior)
+        t.colors['editor.background'] = '#000000'
     }
 
     if (t.tokenColors) {
@@ -101,13 +108,13 @@ module.exports = async () => {
       "method": palette.optimized.FUNCTION,
       "function": palette.optimized.FUNCTION,
       "keyword": palette.optimized.KEYWORD,
-      "class": palette.optimized.PURPLE,
-      "interface": palette.optimized.PURPLE,
-      "namespace": palette.optimized.PURPLE,
-      "type": palette.optimized.CYAN,
-      "enum": palette.optimized.CYAN,
-      "struct": palette.optimized.CYAN,
-      "typeParameter": palette.optimized.CYAN,
+      "class": palette.optimized.CLASS,
+      "interface": palette.optimized.CLASS,
+      "namespace": palette.optimized.CLASS,
+      "type": palette.optimized.TYPE,
+      "enum": palette.optimized.TYPE,
+      "struct": palette.optimized.TYPE,
+      "typeParameter": palette.optimized.TYPE,
       "comment": palette.optimized.COMMENT
   }
 
@@ -130,14 +137,14 @@ module.exports = async () => {
   Object.entries(optVariants).forEach(([key, bt]) => {
       const isItalic = key === 'nightOwlItalic'
       results[key] = transform(bt, '', null, false, false, palette.optimized, isItalic)
-      results[`${key}HC`] = transform(bt, ' High Contrast', '#000000', false, true, palette.optimized, isItalic)
+      results[`${key}HC`] = transform(bt, ' High Contrast', palette.hc_optimized, false, true, palette.optimized, isItalic)
       results[`${key}Eggshell`] = transform(bt, ' Eggshell', null, true, false, palette.optimized, isItalic)
   })
 
-  // Original Lineage
+  // Original Lineage (Completely untouched except for name)
   const baseOriginal = { ...cleanTheme(rawOriginal), name: 'Dracpurp Original' }
   results['dracula'] = baseOriginal
-  results['draculaHC'] = transform(baseOriginal, ' High Contrast', '#000000', false, true, palette.dracula)
+  results['draculaHC'] = transform(baseOriginal, ' High Contrast', null, false, true, palette.dracula)
   results['draculaEggshell'] = transform(baseOriginal, ' Eggshell', null, true, false, palette.dracula)
 
   return results

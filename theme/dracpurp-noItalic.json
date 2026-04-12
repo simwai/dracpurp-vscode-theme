@@ -56,7 +56,11 @@
     },
     "colors": {
         "editor.background": "#100e12",
-        "editor.foreground": "#e8e8e8"
+        "editor.foreground": "#e8e8e8",
+        "sideBar.background": "#100e12",
+        "activityBar.background": "#100e12",
+        "titleBar.activeBackground": "#100e12",
+        "panel.background": "#100e12"
     },
     "tokenColors": [
         {

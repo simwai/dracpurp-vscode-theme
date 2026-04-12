@@ -28,18 +28,18 @@ async function generateScreenshots() {
   })
   const page = await context.newPage()
 
-  for (const themeFile of themeFiles) {
-    const themePath = path.join(THEME_DIR, themeFile)
-    const themeData = JSON.parse(fs.readFileSync(themePath, 'utf-8'))
+  // Optimization: Pre-load highlighter with all themes to avoid multiple instances
+  const themes = themeFiles.map(f => JSON.parse(fs.readFileSync(path.join(THEME_DIR, f), 'utf-8')))
+  const highlighter = await createHighlighter({
+    themes: themes,
+    langs: ['typescript', 'java', 'csharp'],
+  })
+
+  for (const themeData of themes) {
     const themeName = themeData.name
-    const themeKey = themeFile.replace('.json', '')
+    const themeKey = themeFiles.find(f => JSON.parse(fs.readFileSync(path.join(THEME_DIR, f), 'utf-8')).name === themeName).replace('.json', '')
 
     console.log(`Generating screenshots for theme: ${themeName}...`)
-
-    const highlighter = await createHighlighter({
-      themes: [themeData],
-      langs: ['typescript', 'java', 'csharp'],
-    })
 
     for (const sample of SAMPLES) {
       const sampleCode = fs.readFileSync(path.join(ROOT_DIR, sample.file), 'utf-8')
@@ -65,9 +65,9 @@ async function generateScreenshots() {
     .title-bar { height: 35px; background-color: var(--title-bg); display: flex; align-items: center; justify-content: center; font-size: 12px; }
     .main-content { flex: 1; display: flex; }
     .activity-bar { width: 48px; background-color: var(--title-bg); }
-    .side-bar { width: 260px; background-color: var(--bg); border-right: 1px solid #35094e; }
+    .side-bar { width: 260px; background-color: ${colors['sideBar.background'] || 'var(--bg)'}; border-right: 1px solid #35094e; }
     .editor-area { flex: 1; display: flex; flex-direction: column; background-color: var(--bg); }
-    .tabs-container { height: 35px; background-color: var(--title-bg); display: flex; }
+    .tabs-container { height: 35px; background-color: ${colors['titleBar.activeBackground'] || 'var(--title-bg)'}; display: flex; }
     .tab { padding: 0 20px; display: flex; align-items: center; font-size: 12px; color: var(--fg); background-color: var(--bg); border-right: 1px solid #35094e; }
     .editor-content { flex: 1; display: flex; font-family: monospace; font-size: 15px; line-height: 1.6; }
     .line-numbers { width: 50px; padding: 20px 0; text-align: right; padding-right: 15px; color: var(--line-number); }
@@ -105,6 +105,7 @@ async function generateScreenshots() {
     }
   }
 
+  highlighter.dispose()
   await browser.close()
   console.log('All screenshots generated successfully.')
 }

@@ -51,6 +51,11 @@ dracula:
 colors:
   editor.background: *BG
   editor.foreground: *FG
+  # Tiered UI placeholders
+  sideBar.background: *BG
+  activityBar.background: *BG
+  titleBar.activeBackground: *BG
+  panel.background: *BG
 
 tokenColors:
   - name: State (Variables, Strings, Numbers)
