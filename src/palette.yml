@@ -27,7 +27,7 @@ optimized:
   KEYWORD: '#F272BE'
   CLASS: '#B2A1E5'
   TYPE: '#A8B4C3'
-  # Compatibility Anchors
+  # Fallback Anchors for dracpurp.yml
   CYAN: '#A8B4C3'
   GREEN: '#A1D3A9'
   ORANGE: '#DEAC77'
