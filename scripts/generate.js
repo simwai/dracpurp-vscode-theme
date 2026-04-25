@@ -52,23 +52,24 @@ module.exports = async () => {
 
     if (t.tokenColors) {
       const italicScopes = ['keyword', 'parameter', 'comment']
+      const nonItalicScopes = ['class', 'method', 'function', 'interface', 'namespace', 'struct']
 
       t.tokenColors = t.tokenColors.map(tc => {
         if (!tc.settings) return tc
         const newTc = _.cloneDeep(tc)
+        const scope = Array.isArray(newTc.scope) ? newTc.scope.join(' ') : (newTc.scope || '')
 
-        // Handle Italics
-        if (isItalic) {
-            const scope = Array.isArray(newTc.scope) ? newTc.scope.join(' ') : (newTc.scope || '')
-            if (italicScopes.some(s => scope.includes(s))) {
-                newTc.settings.fontStyle = 'italic'
-            }
+        // Enforce Non-Italic for Classes and Methods in ALL variants
+        if (nonItalicScopes.some(s => scope.includes(s))) {
+            newTc.settings.fontStyle = ''
+        } else if (isItalic && italicScopes.some(s => scope.includes(s))) {
+            // Apply Italics only for Night Owl variants
+            newTc.settings.fontStyle = 'italic'
         }
 
         // Handle Eggshell Variables
         if (useEggshell) {
            const variableScopes = ['variable', 'variable.parameter', 'entity.name.variable.parameter', 'variable.other.readwrite']
-           const scope = Array.isArray(newTc.scope) ? newTc.scope.join(' ') : (newTc.scope || '')
            const isVariableToken = variableScopes.some(vs => scope.includes(vs))
            const currentFg = newTc.settings.foreground?.toUpperCase()
            const orangeTarget = lineageColors.ORANGE.toUpperCase()
@@ -81,10 +82,18 @@ module.exports = async () => {
         return newTc
       })
 
-      // Semantic Italics
-      if (isItalic && t.semanticTokenColors) {
+      // Semantic Scopes
+      if (t.semanticTokenColors) {
           for (const key of Object.keys(t.semanticTokenColors)) {
-              if (italicScopes.some(s => key.includes(s))) {
+              if (nonItalicScopes.some(s => key.includes(s))) {
+                  // Force Non-Italic
+                  if (typeof t.semanticTokenColors[key] === 'string') {
+                      t.semanticTokenColors[key] = { foreground: t.semanticTokenColors[key], fontStyle: '' }
+                  } else {
+                      t.semanticTokenColors[key].fontStyle = ''
+                  }
+              } else if (isItalic && italicScopes.some(s => key.includes(s))) {
+                  // Apply Italics
                   if (typeof t.semanticTokenColors[key] === 'string') {
                       t.semanticTokenColors[key] = { foreground: t.semanticTokenColors[key], fontStyle: 'italic' }
                   } else {
@@ -155,7 +164,7 @@ module.exports = async () => {
 
   // Original Lineage (Completely untouched except for name)
   const baseOriginal = { ...cleanTheme(rawOriginal), name: 'Dracpurp Original' }
-  baseOriginal.name = 'Dracpurp Original'; results['dracula'] = baseOriginal
+  results['dracula'] = baseOriginal
   results['draculaHC'] = transform(baseOriginal, ' High Contrast', null, false, true, palette.dracula)
   results['draculaEggshell'] = transform(baseOriginal, ' Eggshell', null, true, false, palette.dracula)
 

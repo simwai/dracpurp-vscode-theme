@@ -568,7 +568,8 @@
                 "punctuation.definition.link.restructuredtext"
             ],
             "settings": {
-                "foreground": "#A8B4C3"
+                "foreground": "#A8B4C3",
+                "fontStyle": ""
             }
         },
         {
@@ -578,7 +579,8 @@
                 "markup.raw.restructuredtext"
             ],
             "settings": {
-                "foreground": "#A1D3A9"
+                "foreground": "#A1D3A9",
+                "fontStyle": ""
             }
         },
         {
@@ -600,7 +602,8 @@
                 "string.other.link.title"
             ],
             "settings": {
-                "foreground": "#F272BE"
+                "foreground": "#F272BE",
+                "fontStyle": ""
             }
         },
         {
@@ -631,7 +634,8 @@
                 "markup.fenced_code.block.markdown punctuation.definition.markdown"
             ],
             "settings": {
-                "foreground": "#A1D3A9"
+                "foreground": "#A1D3A9",
+                "fontStyle": ""
             }
         },
         {
@@ -640,7 +644,8 @@
                 "punctuation.definition.constant.restructuredtext"
             ],
             "settings": {
-                "foreground": "#F272BE"
+                "foreground": "#F272BE",
+                "fontStyle": ""
             }
         },
         {
@@ -729,7 +734,8 @@
                 "comment.block.documentation storage.type.class"
             ],
             "settings": {
-                "foreground": "#F272BE"
+                "foreground": "#F272BE",
+                "fontStyle": ""
             }
         },
         {
@@ -824,7 +830,8 @@
                 "keyword.operator.function.infix"
             ],
             "settings": {
-                "foreground": "#A1D3A9"
+                "foreground": "#A1D3A9",
+                "fontStyle": ""
             }
         },
         {
@@ -952,7 +959,8 @@
                 "punctuation.separator.annotation"
             ],
             "settings": {
-                "foreground": "#F272BE"
+                "foreground": "#F272BE",
+                "fontStyle": ""
             }
         },
         {
@@ -976,7 +984,8 @@
                 "string.template punctuation.accessor"
             ],
             "settings": {
-                "foreground": "#e8e8e8"
+                "foreground": "#e8e8e8",
+                "fontStyle": ""
             }
         },
         {
@@ -1007,7 +1016,8 @@
                 "variable.other.key.toml"
             ],
             "settings": {
-                "foreground": "#A8B4C3"
+                "foreground": "#A8B4C3",
+                "fontStyle": ""
             }
         },
         {
@@ -1099,7 +1109,8 @@
                 "constant.character.escape.backslash.regexp"
             ],
             "settings": {
-                "foreground": "#CEC8B9"
+                "foreground": "#CEC8B9",
+                "fontStyle": ""
             }
         },
         {
@@ -1127,7 +1138,8 @@
                 "punctuation.definition.character-class.regexp"
             ],
             "settings": {
-                "foreground": "#A8B4C3"
+                "foreground": "#A8B4C3",
+                "fontStyle": ""
             }
         },
         {
@@ -1551,15 +1563,33 @@
         "number": "#CEC8B9",
         "regexp": "#CEC8B9",
         "parameter": "#DEAC77",
-        "method": "#A1D3A9",
-        "function": "#A1D3A9",
+        "method": {
+            "foreground": "#A1D3A9",
+            "fontStyle": ""
+        },
+        "function": {
+            "foreground": "#A1D3A9",
+            "fontStyle": ""
+        },
         "keyword": "#F272BE",
-        "class": "#B2A1E5",
-        "interface": "#B2A1E5",
-        "namespace": "#B2A1E5",
+        "class": {
+            "foreground": "#B2A1E5",
+            "fontStyle": ""
+        },
+        "interface": {
+            "foreground": "#B2A1E5",
+            "fontStyle": ""
+        },
+        "namespace": {
+            "foreground": "#B2A1E5",
+            "fontStyle": ""
+        },
         "type": "#A8B4C3",
         "enum": "#A8B4C3",
-        "struct": "#A8B4C3",
+        "struct": {
+            "foreground": "#A8B4C3",
+            "fontStyle": ""
+        },
         "typeParameter": "#A8B4C3",
         "comment": "#817B93"
     }
