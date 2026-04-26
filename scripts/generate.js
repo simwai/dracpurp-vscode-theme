@@ -122,6 +122,7 @@ module.exports = async () => {
       "interface": palette.optimized.CLASS,
       "namespace": palette.optimized.CLASS,
       "type": palette.optimized.TYPE,
+      "type.defaultLibrary": palette.optimized.KEYWORD, // Map Primitives (int, boolean, etc.) to Pink
       "enum": palette.optimized.TYPE,
       "struct": palette.optimized.TYPE,
       "typeParameter": palette.optimized.TYPE,

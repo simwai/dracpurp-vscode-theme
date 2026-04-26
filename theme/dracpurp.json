@@ -1585,6 +1585,7 @@
             "fontStyle": ""
         },
         "type": "#A8B4C3",
+        "type.defaultLibrary": "#F272BE",
         "enum": "#A8B4C3",
         "struct": {
             "foreground": "#A8B4C3",
