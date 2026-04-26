@@ -1043,7 +1043,7 @@ tokenColors:
       - variable.other.constant.ts # Fixes incorrect highlighting of pseudo-constants in ts
       - variable.other.constant.tsx # Fixes incorrect highlighting of pseudo-constants in tsx
     settings:
-      foreground: *ORANGE
+      foreground: *YELLOW
 
   - name: Destructuring / aliasing reference name (LHS)
     scope:

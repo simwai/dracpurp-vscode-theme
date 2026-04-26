@@ -38,15 +38,13 @@ module.exports = async () => {
     const t = _.cloneDeep(theme)
     t.name = `${theme.name}${nameSuffix}`
 
-    // Apply Tiered Backgrounds
-    if (bgSet) {
+    if (isHC && bgSet) {
       t.colors['editor.background'] = bgSet.BG
       t.colors['sideBar.background'] = bgSet.BG_SIDEBAR
       t.colors['activityBar.background'] = bgSet.BG_TITLE
       t.colors['titleBar.activeBackground'] = bgSet.BG_TITLE
       t.colors['panel.background'] = bgSet.BG_SIDEBAR
     } else if (isHC) {
-        // Fallback for Original lineage HC
         t.colors['editor.background'] = '#000000'
     }
 
@@ -59,11 +57,10 @@ module.exports = async () => {
         const newTc = _.cloneDeep(tc)
         const scope = Array.isArray(newTc.scope) ? newTc.scope.join(' ') : (newTc.scope || '')
 
-        // Enforce Non-Italic for Classes and Methods in ALL variants
+        // Enforce Non-Italic
         if (nonItalicScopes.some(s => scope.includes(s))) {
             newTc.settings.fontStyle = ''
         } else if (isItalic && italicScopes.some(s => scope.includes(s))) {
-            // Apply Italics only for Night Owl variants
             newTc.settings.fontStyle = 'italic'
         }
 
@@ -82,18 +79,15 @@ module.exports = async () => {
         return newTc
       })
 
-      // Semantic Scopes
       if (t.semanticTokenColors) {
           for (const key of Object.keys(t.semanticTokenColors)) {
               if (nonItalicScopes.some(s => key.includes(s))) {
-                  // Force Non-Italic
                   if (typeof t.semanticTokenColors[key] === 'string') {
                       t.semanticTokenColors[key] = { foreground: t.semanticTokenColors[key], fontStyle: '' }
                   } else {
                       t.semanticTokenColors[key].fontStyle = ''
                   }
               } else if (isItalic && italicScopes.some(s => key.includes(s))) {
-                  // Apply Italics
                   if (typeof t.semanticTokenColors[key] === 'string') {
                       t.semanticTokenColors[key] = { foreground: t.semanticTokenColors[key], fontStyle: 'italic' }
                   } else {
@@ -110,7 +104,11 @@ module.exports = async () => {
   const baseOptimized = cleanTheme(rawOptimized)
   baseOptimized.semanticTokenColors = {
       "variable": palette.optimized.WORKHORSE,
+      "variable.readonly": palette.optimized.WORKHORSE,
+      "variable.declaration": palette.optimized.WORKHORSE,
       "property": palette.optimized.WORKHORSE,
+      "property.readonly": palette.optimized.WORKHORSE,
+      "member": palette.optimized.WORKHORSE,
       "string": palette.optimized.WORKHORSE,
       "number": palette.optimized.WORKHORSE,
       "regexp": palette.optimized.WORKHORSE,
@@ -122,7 +120,7 @@ module.exports = async () => {
       "interface": palette.optimized.CLASS,
       "namespace": palette.optimized.CLASS,
       "type": palette.optimized.TYPE,
-      "type.defaultLibrary": palette.optimized.KEYWORD, // Map Primitives (int, boolean, etc.) to Pink
+      "type.defaultLibrary": palette.optimized.KEYWORD,
       "enum": palette.optimized.TYPE,
       "struct": palette.optimized.TYPE,
       "typeParameter": palette.optimized.TYPE,

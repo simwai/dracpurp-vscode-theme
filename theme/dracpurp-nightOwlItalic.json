@@ -106,7 +106,7 @@
         "tab.unfocusedInactiveForeground": "#817B93",
         "tab.unfocusedHoverBackground": "#2d074460",
         "tab.lastPinnedBorder": "#35094e",
-        "sideBar.background": "#100e12",
+        "sideBar.background": "#1b0429",
         "sideBar.foreground": "#e8e8e8",
         "sideBar.border": "#35094e",
         "sideBarSectionHeader.background": "#11021a",
@@ -115,7 +115,7 @@
         "sideBarTitle.foreground": "#e8e8e8",
         "sideBarTitle.background": "#11021a",
         "sideBar.dropBackground": "#2d074460",
-        "activityBar.background": "#100e12",
+        "activityBar.background": "#11021a",
         "activityBar.foreground": "#e8e8e8",
         "activityBar.border": "#35094e",
         "activityBarBadge.background": "#a025e7",
@@ -124,7 +124,7 @@
         "activityBar.activeBorder": "#a025e7",
         "activityBar.activeBackground": "#2d074460",
         "activityBar.dropBorder": "#a025e7",
-        "panel.background": "#100e12",
+        "panel.background": "#1b0429",
         "panel.foreground": "#e8e8e8",
         "panel.border": "#35094e",
         "panelTitle.activeForeground": "#b83dff",
@@ -150,7 +150,7 @@
         "statusBarItem.prominentHoverBackground": "#2d074480",
         "statusBarItem.remoteBackground": "#a025e7",
         "statusBarItem.remoteForeground": "#ffffff",
-        "titleBar.activeBackground": "#100e12",
+        "titleBar.activeBackground": "#11021a",
         "titleBar.activeForeground": "#e8e8e8",
         "titleBar.inactiveBackground": "#11021a",
         "titleBar.inactiveForeground": "#817B93",
@@ -1227,7 +1227,7 @@
                 "variable.other.constant.tsx"
             ],
             "settings": {
-                "foreground": "#DEAC77"
+                "foreground": "#CEC8B9"
             }
         },
         {
@@ -1564,7 +1564,11 @@
     ],
     "semanticTokenColors": {
         "variable": "#CEC8B9",
+        "variable.readonly": "#CEC8B9",
+        "variable.declaration": "#CEC8B9",
         "property": "#CEC8B9",
+        "property.readonly": "#CEC8B9",
+        "member": "#CEC8B9",
         "string": "#CEC8B9",
         "number": "#CEC8B9",
         "regexp": "#CEC8B9",
