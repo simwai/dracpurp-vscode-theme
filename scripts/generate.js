@@ -38,13 +38,15 @@ module.exports = async () => {
     const t = _.cloneDeep(theme)
     t.name = `${theme.name}${nameSuffix}`
 
-    if (isHC && bgSet) {
+    // Apply Tiered Backgrounds
+    if (bgSet) {
       t.colors['editor.background'] = bgSet.BG
       t.colors['sideBar.background'] = bgSet.BG_SIDEBAR
       t.colors['activityBar.background'] = bgSet.BG_TITLE
       t.colors['titleBar.activeBackground'] = bgSet.BG_TITLE
       t.colors['panel.background'] = bgSet.BG_SIDEBAR
     } else if (isHC) {
+        // Fallback for Original lineage HC
         t.colors['editor.background'] = '#000000'
     }
 
@@ -57,21 +59,23 @@ module.exports = async () => {
         const newTc = _.cloneDeep(tc)
         const scope = Array.isArray(newTc.scope) ? newTc.scope.join(' ') : (newTc.scope || '')
 
-        // Enforce Non-Italic
+        // Enforce Non-Italic for Classes and Methods in ALL variants
         if (nonItalicScopes.some(s => scope.includes(s))) {
             newTc.settings.fontStyle = ''
         } else if (isItalic && italicScopes.some(s => scope.includes(s))) {
+            // Apply Italics only for Night Owl variants
             newTc.settings.fontStyle = 'italic'
         }
 
-        // Handle Eggshell Variables
+        // Handle Eggshell Variables: Target ORANGE (Parameter) and YELLOW (Workhorse) for replacement if needed
         if (useEggshell) {
-           const variableScopes = ['variable', 'variable.parameter', 'entity.name.variable.parameter', 'variable.other.readwrite']
+           const variableScopes = ['variable', 'variable.parameter', 'entity.name.variable.parameter', 'variable.other.readwrite', 'variable.other.property']
            const isVariableToken = variableScopes.some(vs => scope.includes(vs))
            const currentFg = newTc.settings.foreground?.toUpperCase()
            const orangeTarget = lineageColors.ORANGE.toUpperCase()
+           const yellowTarget = lineageColors.YELLOW.toUpperCase()
 
-           if (isVariableToken && currentFg === orangeTarget) {
+           if (isVariableToken && (currentFg === orangeTarget || currentFg === yellowTarget)) {
                 newTc.settings.foreground = eggshellVal
            }
         }
@@ -79,15 +83,18 @@ module.exports = async () => {
         return newTc
       })
 
+      // Semantic Scopes
       if (t.semanticTokenColors) {
           for (const key of Object.keys(t.semanticTokenColors)) {
               if (nonItalicScopes.some(s => key.includes(s))) {
+                  // Force Non-Italic
                   if (typeof t.semanticTokenColors[key] === 'string') {
                       t.semanticTokenColors[key] = { foreground: t.semanticTokenColors[key], fontStyle: '' }
                   } else {
                       t.semanticTokenColors[key].fontStyle = ''
                   }
               } else if (isItalic && italicScopes.some(s => key.includes(s))) {
+                  // Apply Italics
                   if (typeof t.semanticTokenColors[key] === 'string') {
                       t.semanticTokenColors[key] = { foreground: t.semanticTokenColors[key], fontStyle: 'italic' }
                   } else {
