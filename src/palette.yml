@@ -14,25 +14,25 @@ dracula:
   RED: '#FF5555'
   YELLOW: '#F1FA8C'
 
-# Optimized Palette: Refined Semantic Manifold
+# Optimized Palette: Refined Semantic Manifold (Improved Differentiation)
 optimized:
   BG: '#100e12'
   FG: '#e8e8e8'
-  COMMENT: '#817B93'
+  COMMENT: '#6856A0'
   SELECTION: '#2d074496'
-  # Functional Semantic Groups
+  # Functional Semantic Groups (Saturated for better separation)
   WORKHORSE: '#CEC8B9' # Variables, Properties, Strings, Numbers, Regexp
-  PARAMETER: '#DEAC77'
-  FUNCTION: '#A1D3A9'
-  KEYWORD: '#F272BE'
-  CLASS: '#B2A1E5'
-  TYPE: '#A8B4C3'
-  # Fallback Anchors for dracpurp.yml
-  CYAN: '#A8B4C3'
-  GREEN: '#A1D3A9'
-  ORANGE: '#DEAC77'
-  PINK: '#F272BE'
-  PURPLE: '#B2A1E5'
+  PARAMETER: '#EB9F4F'
+  FUNCTION: '#7EE08E'
+  KEYWORD: '#FF45B3'
+  CLASS: '#8661F2'
+  TYPE: '#759DD0'
+  # Compatibility Anchors for dracpurp.yml
+  CYAN: '#759DD0'
+  GREEN: '#7EE08E'
+  ORANGE: '#EB9F4F'
+  PINK: '#FF45B3'
+  PURPLE: '#8661F2'
   RED: '#FF5555'
   YELLOW: '#CEC8B9'
 
