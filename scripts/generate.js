@@ -59,23 +59,23 @@ module.exports = async () => {
         const newTc = _.cloneDeep(tc)
         const scope = Array.isArray(newTc.scope) ? newTc.scope.join(' ') : (newTc.scope || '')
 
-        // Enforce Non-Italic for Classes and Methods in ALL variants
+        // Enforce Non-Italic
         if (nonItalicScopes.some(s => scope.includes(s))) {
             newTc.settings.fontStyle = ''
         } else if (isItalic && italicScopes.some(s => scope.includes(s))) {
-            // Apply Italics only for Night Owl variants
             newTc.settings.fontStyle = 'italic'
         }
 
-        // Handle Eggshell Variables: Target ORANGE (Parameter) and YELLOW (Workhorse) for replacement if needed
+        // Handle Eggshell Variables (Workhorse group only)
         if (useEggshell) {
-           const variableScopes = ['variable', 'variable.parameter', 'entity.name.variable.parameter', 'variable.other.readwrite', 'variable.other.property']
-           const isVariableToken = variableScopes.some(vs => scope.includes(vs))
+           const workhorseScopes = ['variable.other.readwrite', 'variable.other.property', 'variable.other.object']
+           const isWorkhorse = workhorseScopes.some(vs => scope.includes(vs))
            const currentFg = newTc.settings.foreground?.toUpperCase()
-           const orangeTarget = lineageColors.ORANGE.toUpperCase()
            const yellowTarget = lineageColors.YELLOW.toUpperCase()
 
-           if (isVariableToken && (currentFg === orangeTarget || currentFg === yellowTarget)) {
+           // Replace only those that are in the Workhorse (Yellow) group
+           // Parameters (Orange) remain Orange even in Eggshell variants
+           if (isWorkhorse && currentFg === yellowTarget) {
                 newTc.settings.foreground = eggshellVal
            }
         }

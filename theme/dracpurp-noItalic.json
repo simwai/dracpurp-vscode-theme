@@ -697,7 +697,9 @@
                 "variable.language",
                 "variable.language punctuation.definition.variable.php",
                 "variable.other.readwrite.instance.ruby",
-                "variable.parameter.function.language.special"
+                "variable.parameter.function.language.special",
+                "variable.parameter.cs",
+                "variable.other.parameter.cs"
             ],
             "settings": {
                 "foreground": "#FF45B3",
@@ -842,7 +844,9 @@
                 "meta.at-rule.mixin variable",
                 "meta.function.arguments variable.other.php",
                 "meta.selectionset.graphql meta.arguments.graphql variable.arguments.graphql",
-                "variable.parameter"
+                "variable.parameter",
+                "variable.parameter.cs",
+                "variable.other.parameter.cs"
             ],
             "settings": {
                 "fontStyle": "",
@@ -1412,6 +1416,8 @@
                 "variable.language punctuation.definition.variable.php",
                 "variable.other.readwrite.instance.ruby",
                 "variable.parameter.function.language.special",
+                "variable.parameter.cs",
+                "variable.other.parameter.cs",
                 "entity.other.inherited-class",
                 "comment.block.documentation entity.name.type",
                 "comment.block.documentation variable",
@@ -1422,6 +1428,8 @@
                 "meta.function.arguments variable.other.php",
                 "meta.selectionset.graphql meta.arguments.graphql variable.arguments.graphql",
                 "variable.parameter",
+                "variable.parameter.cs",
+                "variable.other.parameter.cs",
                 "meta.decorator variable.other.readwrite",
                 "meta.decorator variable.other.property",
                 "support",
