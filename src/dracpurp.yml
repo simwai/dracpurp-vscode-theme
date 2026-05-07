@@ -653,7 +653,7 @@ tokenColors:
     scope:
       - comment.block.documentation variable
     settings:
-      foreground: *ORANGE
+      foreground: *CYAN
       fontStyle: italic
 
   # =============================================================================
@@ -716,7 +716,9 @@ tokenColors:
     settings:
       foreground: *GREEN
 
-  - name: Function parameters
+  - name: Function parameters — declaration
+    # Parameters get CYAN at declaration. Usage scopes per language below
+    # ensure the same color is applied when the param is referenced in the body.
     scope:
       - entity.name.variable.parameter
       - meta.at-rule.function variable # Sass function params
@@ -726,7 +728,66 @@ tokenColors:
       - variable.parameter
     settings:
       fontStyle: italic
-      foreground: *ORANGE
+      foreground: *CYAN
+
+  # ---------------------------------------------------------------------------
+  # Parameter usage — per language
+  # These scopes fire when a declared parameter is *referenced* inside the body.
+  # They must match CYAN so declaration and usage are visually identical.
+  # ---------------------------------------------------------------------------
+
+  - name: Parameter usage — TypeScript / JavaScript
+    # TS/JS grammars tag local variable reads as variable.other.readwrite.
+    # We narrow to only those inside a function/method body to avoid catching
+    # all variables — the parent scope meta.block makes this specific enough.
+    scope:
+      - meta.function.ts variable.other.readwrite
+      - meta.function.tsx variable.other.readwrite
+      - meta.arrow.ts variable.other.readwrite
+      - meta.arrow.tsx variable.other.readwrite
+      - meta.method.declaration.ts variable.other.readwrite
+      - meta.parameters.ts variable.other.readwrite
+      - meta.parameters.tsx variable.other.readwrite
+    settings:
+      foreground: *CYAN
+
+  - name: Parameter usage — C#
+    # C# grammar (OmniSharp / vscode-csharp) uses variable.other.readwrite for
+    # parameter references and entity.name.variable.parameter for the declaration.
+    scope:
+      - source.cs variable.other.readwrite
+      - source.cs variable.parameter
+    settings:
+      foreground: *CYAN
+
+  - name: Parameter usage — Java
+    # Java grammar emits variable.parameter at declaration and
+    # variable.other at usage; storage.type.java covers the type annotation.
+    scope:
+      - source.java variable.other
+      - source.java variable.parameter
+    settings:
+      foreground: *CYAN
+
+  - name: Parameter usage — Bash / Shell
+    # Bash parameters are $1..$n and named params in functions.
+    # variable.other covers $varname references; variable.parameter the declaration.
+    scope:
+      - source.shell variable.other.normal
+      - source.shell variable.parameter
+      - source.bash variable.other.normal
+      - source.bash variable.parameter
+    settings:
+      foreground: *CYAN
+
+  - name: Parameter usage — PowerShell
+    # PowerShell grammar tags declared params as variable.other.readwrite and
+    # uses the same scope at reference sites.
+    scope:
+      - source.powershell variable.other.readwrite
+      - source.powershell variable.parameter
+    settings:
+      foreground: *CYAN
 
   - name: Decorators
     scope:
@@ -809,7 +870,7 @@ tokenColors:
       - punctuation.colon.graphql
       - punctuation.definition.block.scalar.folded.yaml
       - punctuation.definition.block.scalar.literal.yaml
-      - punctuation.definition.block.sequence.item.yaml
+      - punctuation.definition.block.scalar.sequence.item.yaml
       - punctuation.definition.entity.other.inherited-class
       - punctuation.function.swift
       - punctuation.separator.dictionary.key-value
