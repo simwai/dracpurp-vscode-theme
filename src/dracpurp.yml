@@ -728,6 +728,44 @@ tokenColors:
       fontStyle: italic
       foreground: *ORANGE
 
+  - name: Parameter usage (matches declaration color)
+    scope:
+      - variable.other.readwrite.ts
+      - variable.other.readwrite.tsx
+      - variable.other.readwrite.js
+      - variable.other.readwrite.jsx
+      - variable.other.readwrite.cs
+      - variable.other.readwrite.java
+    settings:
+      foreground: *ORANGE
+
+  - name: Shell variables
+    scope:
+      - variable.other.bracket.shell
+      - variable.other.shell
+      - variable.other.readwrite.shell
+    settings:
+      foreground: *ORANGE
+
+  - name: Shell built-in commands
+    scope:
+      - support.function.command.shell
+    settings:
+      foreground: *CYAN
+
+  - name: PowerShell variables
+    scope:
+      - variable.other.readwrite.powershell
+      - variable.other.member.powershell
+    settings:
+      foreground: *ORANGE
+
+  - name: PowerShell functions
+    scope:
+      - support.function.powershell
+    settings:
+      foreground: *GREEN
+
   - name: Decorators
     scope:
       - meta.decorator variable.other.readwrite

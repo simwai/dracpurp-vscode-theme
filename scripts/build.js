@@ -9,20 +9,19 @@ if (!fs.existsSync(THEME_DIR)) {
 }
 
 module.exports = async () => {
-  const themes = await generate()
+  const { base, nightOwlItalic, noItalic } = await generate()
 
-  const promises = Object.entries(themes).map(([key, data]) => {
-    let filename = 'dracpurp'
-    if (key !== 'base') {
-        filename += `-${key}`
-    }
-    return fs.promises.writeFile(
-      path.join(THEME_DIR, `${filename}.json`),
-      JSON.stringify(data, null, 4)
-    )
-  })
-
-  return Promise.all(promises)
+  return Promise.all([
+    fs.promises.writeFile(path.join(THEME_DIR, 'dracpurp.json'), JSON.stringify(base, null, 4)),
+    fs.promises.writeFile(
+      path.join(THEME_DIR, 'dracpurp-noItalic.json'),
+      JSON.stringify(noItalic, null, 4),
+    ),
+    fs.promises.writeFile(
+      path.join(THEME_DIR, 'dracpurp-nightOwlItalic.json'),
+      JSON.stringify(nightOwlItalic, null, 4),
+    ),
+  ])
 }
 
 if (require.main === module) {
